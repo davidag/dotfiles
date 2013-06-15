@@ -1,4 +1,4 @@
-personal-setup
-==============
+My dotfiles
+===========
 
-My Personal Linux Setup
+These are the dotfiles I used, along with a script to automatically install them.
