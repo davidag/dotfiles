@@ -1,11 +1,16 @@
 #!/bin/bash
 #==============================================================================
-# File:         setup-git.sh
-# Usage:        setup-git.sh [-i|-u]
-# Description:  Install the tools and files needed to use git repos.
+# File:         setup-vim.sh
+# Usage:        setup-vim.sh [-i|-u]
+# Description:  Install vim config file.
 #==============================================================================
 
-source common-config.sh
+source common-functions.sh
+
+VIMRC="~/.vimrc"
+VIMRC_BACKUP="~/.vimrc.bck"
+VIM_FOLDER="~/.vim"
+VIM_FOLDER_BACKUP="~/.vim_bck"
 
 #=== FUNCTION =================================================================
 # Name:         usage
@@ -14,8 +19,8 @@ source common-config.sh
 #==============================================================================
 function usage() {
     echo "Usage: $0 [-i|-u]"
-    echo "  -i: installs the environment to work with git"
-    echo "  -u: uninstalls the environment previously installed."
+    echo "  -i: installs vim configuration"
+    echo "  -u: uninstalls vim configuration and restores the previous one"
     exit 1
 }
 
@@ -25,8 +30,9 @@ function usage() {
 # Params:       ---
 #==============================================================================
 function check_already_installed() {
-    if [ -f ~/.gitconfig.bck ]; then
-        echo "Previous git info backup found! Abort"
+    if [ -f $VIMRC_BACKUP -o -d $VIM_FOLDER_BACKUP ]; then
+        echo "Previous vim backup found in $VIMRC_BACKUP or $VIM_FOLDER_BACKUP"
+        echo "Aborting installation..."
         exit 1
     fi
 }
@@ -46,27 +52,27 @@ if [ "$1" == "-i" ]; then
     check_already_installed
 
     echo "Checking needed packages..."
-    check_and_install_package git-core
+    check_and_install_package vim
 
-    if [ -f ~/.gitconfig ]; then
-        echo "Backing up previous git global info in ~/.gitconfig.bck"
-        cp --preserve ~/.gitconfig ~/.gitconfig.bck
+    if [ -f $VIMRC ]; then
+        echo "Backing up previous vim config in $VIMRC_BACKUP and $VIM_FOLDER_BACKUP"
+        cp --preserve $VIMRC $VIMRC_BACKUP
+        cp --preserve $VIM_FOLDER $VIM_FOLDER_BACKUP
     fi
 
-    echo "Setting up your git global info..."
-    read -p "Enter your name (firstname secondname): " name
-    git config --global user.name "$name"
-    if [ "$email" == "" ]; then
-        read -p "Enter your e-mail address: " 
-    fi
-    git config --global user.email "$email"
+    cp vimrc $VIMRC
+    cp vim $VIMFOLDER
+
     echo "Done!"
 # Uninstall
 else
-    if [ -f ~/.gitconfig.bck ]; then
-        echo "Restoring git global config..."
-        cp --preserve ~/.gitconfig.bck ~/.gitconfig
-        rm ~/.gitconfig.bck
+    if [ -f $VIMRC_BACKUP ]; then
+        echo "Restoring previous config..."
+        mv $VIMRC_BACKUP $VIMRC
+        mv $VIM_FOLDER_BACKUP $VIM_FOLDER
+    else
+        echo "No previous config found!"
+        exit 1
     fi
 fi
 
