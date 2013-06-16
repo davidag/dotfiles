@@ -1,11 +1,10 @@
 #!/bin/bash
 #==============================================================================
-# File:         setup-github.sh
-# Usage:        setup-github.sh [-i|-u]
-# Description:  Install the tools and files needed to use github repos.
+# File:         setup-git.sh
+# Usage:        setup-git.sh [-i|-u]
+# Description:  Install the tools and files needed to use git repos.
 #==============================================================================
 
-SSH_KEYS="./ssh_keys"
 
 #=== FUNCTION =================================================================
 # Name:         usage
@@ -14,11 +13,8 @@ SSH_KEYS="./ssh_keys"
 #==============================================================================
 function usage() {
     echo "Usage: $0 [-i|-u]"
-    echo "  -i: installs the environment to work with github"
+    echo "  -i: installs the environment to work with git"
     echo "  -u: uninstalls the environment previously installed."
-    echo "Note: Your SSH keys must reside in the subfolder $SSH_KEYS"
-    echo " as they will be copied in ~./ssh (after backing up the old"
-    echo " ones)."
     exit 1
 }
 
@@ -28,11 +24,6 @@ function usage() {
 # Params:       ---
 #==============================================================================
 function check_already_installed() {
-    # Checking backups
-    if [ -d ~/.ssh/key_backup ]; then
-        echo "Previous ssh key backup found! Abort"
-        exit 1
-    fi
     if [ -f ~/.gitconfig.bck ]; then
         echo "Previous git info backup found! Abort"
         exit 1
@@ -69,38 +60,13 @@ if [ "$1" == "-i" ]; then
 
     echo "Checking needed packages..."
     check_and_install_package git-core
-    check_and_install_package openssh-client
-
-    if [ -d ~/.ssh ]; then
-        echo "Backing up keys at ~/.ssh in ~/.ssh/key_backup"
-        mkdir ~/.ssh/key_backup
-        cp --preserve ~/.ssh/id_rsa* ~/.ssh/key_backup
-        rm ~/.ssh/id_rsa*
-    else
-        mkdir ~/.ssh
-    fi
-    
-    email=
-    if [ -d "$SSH_KEYS" ] && ls $SSH_KEYS/id_rsa* 2> /dev/null; then
-        echo "Installing your ssh key pair in ~/.ssh ..."
-        cp $SSH_KEYS/id_rsa* ~/.ssh
-    else
-        echo "You have not provided an ssh key pair in $SSH_KEYS"
-        read -p "Do you want to create one now? (y/n) " yesno
-        if [ "$yesno" == "y" -o "$yesno" == "Y" ]; then
-            read -p "Enter your e-mail address: " email
-            ssh-keygen -t rsa -C "$email"
-            echo "Remember to add you ssh key to GitHub"
-        else
-            exit 1
-        fi
-    fi
 
     if [ -f ~/.gitconfig ]; then
         echo "Backing up previous git global info in ~/.gitconfig.bck"
         cp --preserve ~/.gitconfig ~/.gitconfig.bck
     fi
-    echo "Setting up your GIT global info..."
+
+    echo "Setting up your git global info..."
     read -p "Enter your name (firstname secondname): " name
     git config --global user.name "$name"
     if [ "$email" == "" ]; then
@@ -110,11 +76,6 @@ if [ "$1" == "-i" ]; then
     echo "Done!"
 # Uninstall
 else
-    if [ -d ~/.ssh/key_backup ]; then
-        echo "Restoring key_backup..."
-        cp --preserve ~/.ssh/key_backup/id_rsa* ~/.ssh
-        rm --recursive ~/.ssh/key_backup
-    fi
     if [ -f ~/.gitconfig.bck ]; then
         echo "Restoring git global config..."
         cp --preserve ~/.gitconfig.bck ~/.gitconfig
