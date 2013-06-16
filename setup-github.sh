@@ -1,8 +1,8 @@
 #!/bin/bash
 #==============================================================================
-# File:         setup.sh
-# Usage:        setup.sh [-i|-u]
-# Description:  Installs the tools and files needed to use github repos.
+# File:         setup-github.sh
+# Usage:        setup-github.sh [-i|-u]
+# Description:  Install the tools and files needed to use github repos.
 #==============================================================================
 
 SSH_KEYS="./ssh_keys"
@@ -23,32 +23,11 @@ function usage() {
 }
 
 #=== FUNCTION =================================================================
-# Name:         check_and_install_package
-# Description:  Checks if a packages is installed and installs it if not.
-# Param 1:      package name
+# Name:         check_already_installed()
+# Description:  Checks if there's a previous installation.
+# Params:       ---
 #==============================================================================
-function check_and_install_package() {
-    echo "Checking $1 package..."
-    dpkg -s $1 > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        echo "Installing $1..."
-        sudo apt-get install $1
-    else
-        echo "$1 is already installed"
-    fi
-}
-
-#------------------------------------------------------------------------------
-# Main program
-#------------------------------------------------------------------------------
-
-# Check script param
-if [ $# -ne 1 ] || [ "$1" != "-i" -a "$1" != "-u" ]; then
-    usage
-fi
-
-# Install
-if [ "$1" == "-i" ]; then
+function check_already_installed() {
     # Checking backups
     if [ -d ~/.ssh/key_backup ]; then
         echo "Previous ssh key backup found! Abort"
@@ -58,10 +37,40 @@ if [ "$1" == "-i" ]; then
         echo "Previous git info backup found! Abort"
         exit 1
     fi
+}
+
+#=== FUNCTION =================================================================
+# Name:         check_and_install_package
+# Description:  Checks if a packages is installed and installs it if not.
+# Param 1:      package name
+#==============================================================================
+function check_and_install_package() {
+    echo "Checking $1 package..."
+    dpkg -s $1 > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo "Package $1 not present. Installing..."
+        sudo apt-get install $1
+    fi
+}
+
+#------------------------------------------------------------------------------
+# Main program
+#------------------------------------------------------------------------------
+
+# Check script param
+if [ "$1" != "-i" -a "$1" != "-u" ]; then
+    usage
+fi
+
+# Install
+if [ "$1" == "-i" ]; then
+    echo "Checking already installed..."
+    check_already_installed
 
     echo "Checking needed packages..."
     check_and_install_package git-core
     check_and_install_package openssh-client
+
     if [ -d ~/.ssh ]; then
         echo "Backing up keys at ~/.ssh in ~/.ssh/key_backup"
         mkdir ~/.ssh/key_backup
@@ -91,7 +100,7 @@ if [ "$1" == "-i" ]; then
         echo "Backing up previous git global info in ~/.gitconfig.bck"
         cp --preserve ~/.gitconfig ~/.gitconfig.bck
     fi
-    echo "Setting up your global info..."
+    echo "Setting up your GIT global info..."
     read -p "Enter your name (firstname secondname): " name
     git config --global user.name "$name"
     if [ "$email" == "" ]; then
