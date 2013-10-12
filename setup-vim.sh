@@ -10,24 +10,15 @@ source common-functions.sh
 VIMRC="$HOME/.vimrc"
 VIMFOLDER="$HOME/.vim"
 
-#=== FUNCTION =================================================================
-# Name:         usage
-# Description:  Display usage information for this script.
-# Params:       ---
-#==============================================================================
-function usage() {
-    echo "Usage: $0 [-i|-u]"
-    echo "  -i: installs vim configuration"
-    echo "  -u: uninstalls vim configuration and restores the previous one"
-    exit 1
-}
-
 #------------------------------------------------------------------------------
 # Main program
 #------------------------------------------------------------------------------
 
 if [ "$1" != "-i" -a "$1" != "-u" ]; then
-    usage
+    echo "Usage: $0 [-i|-u]"
+    echo "  -i: installs vim configuration"
+    echo "  -u: uninstalls vim configuration and restores the previous one"
+    exit 1
 fi
 
 if [ "$1" == "-i" ]; then
