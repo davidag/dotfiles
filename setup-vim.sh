@@ -30,10 +30,11 @@ if [ "$1" == "-i" ]; then
     check_and_install_package vim
 
     echo "Backing up your files..."
-    do_backup $VIMRC $VIMFOLDER
+    do_backup $VIMRC $VIMFOLDER || \
+        { echo "Aborting installation..."; exit 1; }
 
-    echo "do_install vimrc $VIMRC"
-    echo "do_install vim $VIMFOLDER"
+    echo "Installing config files..."
+    do_install $VIMRC $VIMFOLDER
 
     echo "Done!"
 else

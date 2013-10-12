@@ -48,14 +48,15 @@ function do_backup() {
             dst_file="${element}$FILE_EXT"
             echo "Moving file '$element' -> '$dst_file'"
             mv --no-clobber $element $dst_file || \
-                { echo "Error $? moving file '$element'"; exit 1; }
+                { echo "Error $? moving file '$element'"; return 1; }
         elif [ -d "$element" ]; then
             dst_folder="${element}$FOLDER_EXT"        
             echo "Moving folder '$element' -> '$dst_folder'"
             mv --no-clobber --no-target-directory $element $dst_folder || \
-                { echo "Error $? moving folder '$element'"; exit 1; }
+                { echo "Error $? moving folder '$element'"; return 1; }
         fi
     done
+    return 0
 }
 
 #=== FUNCTION =================================================================
@@ -79,5 +80,28 @@ function do_restore() {
         fi
     done
     return 0
+}
+
+
+#=== FUNCTION =================================================================
+# Name:         do_install
+# Description:  installs a list of files and/or folders
+# Notes:        Only works with folders and files starting with "."
+#               The file/folder must exist in the current path without the
+#                   starting dot.
+# Param n:      file or folder full path 
+#==============================================================================
+function do_install() {
+    for element in "$@"; do
+        src_name=${element##*/}
+        src_name=${src_name##.}
+        if [ -f "$src_name" ]; then
+            echo "Installing file '$src_name' -> $element"
+            cp --no-clobber --preserve $src_name $element
+        elif [ -d "$src_name" ]; then
+            echo "Installing folder '$src_name' -> $element"
+            cp --recursive --no-clobber --preserve --no-target-directory $src_name $element
+        fi
+    done
 }
 
