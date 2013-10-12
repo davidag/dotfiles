@@ -8,9 +8,7 @@
 source common-functions.sh
 
 VIMRC="$HOME/.vimrc"
-VIMRC_BACKUP="$HOME/.vimrc.bck"
 VIMFOLDER="$HOME/.vim"
-VIMFOLDER_BACKUP="$HOME/.vim_bck"
 
 #=== FUNCTION =================================================================
 # Name:         usage
@@ -48,14 +46,9 @@ if [ "$1" == "-i" ]; then
 
     echo "Done!"
 else
-    if [ -f $VIMRC_BACKUP ]; then
-        echo "Restoring previous config..."
-        echo "do_restore $VIMRC_BACKUP $VIMRC"
-        echo "do_restore $VIMFOLDER_BACKUP $VIMFOLDER"
-    else
-        echo "Error: No previous config found!"
-        exit 1
-    fi
+    echo "Restoring previous config..."
+    do_restore $VIMRC $VIMFOLDER || \
+        { echo "Aborting restoration..."; exit 1; }
 fi
 
 exit 0

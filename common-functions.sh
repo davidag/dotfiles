@@ -58,3 +58,24 @@ function do_backup() {
     done
 }
 
+#=== FUNCTION =================================================================
+# Name:         do_restore
+# Description:  restores a list of files and/or folders
+# Param n:      file or folder full path 
+#==============================================================================
+function do_restore() {
+    for element in "$@"; do
+        backup_file_path="${element}$FILE_EXT"
+        backup_folder_path="${element}$FOLDER_EXT"
+        if [ -f "$backup_file_path" ]; then
+            echo "File: $backup_file_path"
+        elif [ -d "$backup_folder_path" ]; then
+            echo "Folder: $backup_folder_path"
+        else
+            echo "Error: No backup for '$element'"
+            return 1
+        fi
+    done
+    return 0
+}
+
