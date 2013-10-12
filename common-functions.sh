@@ -68,9 +68,11 @@ function do_restore() {
         backup_file_path="${element}$FILE_EXT"
         backup_folder_path="${element}$FOLDER_EXT"
         if [ -f "$backup_file_path" ]; then
-            echo "File: $backup_file_path"
+            echo "Restoring file: $backup_file_path -> $element"
+            mv $backup_file_path $element
         elif [ -d "$backup_folder_path" ]; then
-            echo "Folder: $backup_folder_path"
+            echo "Restoring folder: $backup_folder_path -> $element"
+            mv --no-target-directory $backup_folder_path $element
         else
             echo "Error: No backup for '$element'"
             return 1
