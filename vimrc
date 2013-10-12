@@ -13,8 +13,8 @@ set smartindent
 set tabstop=4        " tab width is 4 spaces
 set shiftwidth=4     " indent also with 4 spaces
 set expandtab        " expand tabs to spaces
-" wrap lines at 100 chars. 80 is somewhat antiquated with nowadays displays.
-set textwidth=100
+" wrap lines at 100 chars. 80 is somewaht antiquated with nowadays displays.
+" set textwidth=100
 
 """""" SYNTAX HIGHLIGHT
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -31,6 +31,10 @@ set comments=sl:/*,mb:\ *,elx:\ */
 set hls
 " Set a shortcut to mute highlight until next search (Practical Vim, tip 80)
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+"""""" SEARCH WITH ACK
+set grepprg=ack\ --ignore-file=is:tags\ --ignore-dir=Release\ --ignore-dir=Debug\ --no-group\ --column\ $*
+set grepformat=%f:%l:%c:%m
 
 """""" ENCODING
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,6 +63,8 @@ nnoremap <C-w>j <C-w>h
 
 " To enable/disable paste (allows to paste into vim buffer avoding autotabs).
 set pastetoggle=<F2>
+
+nnoremap <f5> :!ctags -R --exclude=.git --exclude=CVS --languages=c++,c --c++-kinds=+p --fields=+iaS --extra=+q<CR>
 
 """""" TAGBAR
 nmap <F8> :TagbarToggle<CR>
