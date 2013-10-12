@@ -28,12 +28,10 @@ function usage() {
 # Main program
 #------------------------------------------------------------------------------
 
-# Check script param
 if [ "$1" != "-i" -a "$1" != "-u" ]; then
     usage
 fi
 
-# Install
 if [ "$1" == "-i" ]; then
     echo "Checking vim config already installed..."
     check_if_already_backed_up $VIMRC $VIMFOLDER || \
@@ -42,24 +40,18 @@ if [ "$1" == "-i" ]; then
     echo "Checking needed packages..."
     check_and_install_package vim
 
-    if [ -f "$VIMRC" ]; then
-        echo "Backing up previous vim config in $VIMRC_BACKUP and $VIMFOLDER_BACKUP"
-#        do_backup_file $VIMRC
-#        do_backup_folder $VIM_FOLDER $VIM_BACKUP
-        echo "cp --preserve $VIMRC $VIMRC_BACKUP"
-        echo "cp --preserve $VIMFOLDER $VIMFOLDER_BACKUP"
-    fi
+    echo "Backing up your files..."
+    do_backup $VIMRC $VIMFOLDER
 
-    echo "cp --preserve vimrc $VIMRC"
-    echo "cp --preserve vim $VIMFOLDER"
+    echo "do_install vimrc $VIMRC"
+    echo "do_install vim $VIMFOLDER"
 
     echo "Done!"
-# Uninstall
 else
     if [ -f $VIMRC_BACKUP ]; then
         echo "Restoring previous config..."
-        echo "mv $VIMRC_BACKUP $VIMRC"
-        echo "mv $VIMFOLDER_BACKUP $VIMFOLDER"
+        echo "do_restore $VIMRC_BACKUP $VIMRC"
+        echo "do_restore $VIMFOLDER_BACKUP $VIMFOLDER"
     else
         echo "Error: No previous config found!"
         exit 1

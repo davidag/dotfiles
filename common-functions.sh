@@ -37,3 +37,24 @@ function check_if_already_backed_up() {
     return 0
 }
 
+#=== FUNCTION =================================================================
+# Name:         do_backup
+# Description:  backups a list of files and/or folders
+# Param n:      file or folder full path 
+#==============================================================================
+function do_backup() {
+    for element in "$@"; do
+        if [ -f "$element" ]; then
+            dst_file="${element}$FILE_EXT"
+            echo "Moving file '$element' -> '$dst_file'"
+            mv --no-clobber $element $dst_file || \
+                { echo "Error $? moving file '$element'"; exit 1; }
+        elif [ -d "$element" ]; then
+            dst_folder="${element}$FOLDER_EXT"        
+            echo "Moving folder '$element' -> '$dst_folder'"
+            mv --no-clobber --no-target-directory $element $dst_folder || \
+                { echo "Error $? moving folder '$element'"; exit 1; }
+        fi
+    done
+}
+
