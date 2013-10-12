@@ -1,4 +1,4 @@
 My dotfiles
 ===========
 
-These are the dotfiles I used, along with a script to automatically install them.
+These are the dotfiles I currently use, along with some scripts to automatically install them.
