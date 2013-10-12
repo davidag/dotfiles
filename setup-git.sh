@@ -24,7 +24,7 @@ function usage() {
 # Description:  Checks if there's a previous installation.
 # Params:       ---
 #==============================================================================
-function check_already_installed() {
+function check_git_config_already_installed() {
     if [ -f ~/.gitconfig.bck ]; then
         echo "Previous git info backup found! Abort"
         exit 1
@@ -42,8 +42,8 @@ fi
 
 # Install
 if [ "$1" == "-i" ]; then
-    echo "Checking already installed..."
-    check_already_installed
+    echo "Checking if git config is already installed..."
+    check_git_config_already_installed
 
     echo "Checking needed packages..."
     check_and_install_package git-core
@@ -71,3 +71,4 @@ else
 fi
 
 exit 0
+
