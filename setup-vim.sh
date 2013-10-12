@@ -7,10 +7,10 @@
 
 source common-functions.sh
 
-VIMRC="~/.vimrc"
-VIMRC_BACKUP="~/.vimrc.bck"
-VIM_FOLDER="~/.vim"
-VIM_FOLDER_BACKUP="~/.vim_bck"
+VIMRC="$HOME/.vimrc"
+VIMRC_BACKUP="$HOME/.vimrc.bck"
+VIMFOLDER="$HOME/.vim"
+VIMFOLDER_BACKUP="$HOME/.vim_bck"
 
 #=== FUNCTION =================================================================
 # Name:         usage
@@ -24,19 +24,6 @@ function usage() {
     exit 1
 }
 
-#=== FUNCTION =================================================================
-# Name:         check_already_installed()
-# Description:  Checks if there's a previous installation.
-# Params:       ---
-#==============================================================================
-function check_already_installed() {
-    if [ -f $VIMRC_BACKUP -o -d $VIM_FOLDER_BACKUP ]; then
-        echo "Previous vim backup found in $VIMRC_BACKUP or $VIM_FOLDER_BACKUP"
-        echo "Aborting installation..."
-        exit 1
-    fi
-}
-
 #------------------------------------------------------------------------------
 # Main program
 #------------------------------------------------------------------------------
@@ -48,32 +35,36 @@ fi
 
 # Install
 if [ "$1" == "-i" ]; then
-    echo "Checking already installed..."
-    check_already_installed
+    echo "Checking vim config already installed..."
+    check_if_already_backed_up $VIMRC $VIMFOLDER || \
+        { echo "Aborting installation..."; exit 1; }
 
     echo "Checking needed packages..."
     check_and_install_package vim
 
-    if [ -f $VIMRC ]; then
-        echo "Backing up previous vim config in $VIMRC_BACKUP and $VIM_FOLDER_BACKUP"
-        cp --preserve $VIMRC $VIMRC_BACKUP
-        cp --preserve $VIM_FOLDER $VIM_FOLDER_BACKUP
+    if [ -f "$VIMRC" ]; then
+        echo "Backing up previous vim config in $VIMRC_BACKUP and $VIMFOLDER_BACKUP"
+#        do_backup_file $VIMRC
+#        do_backup_folder $VIM_FOLDER $VIM_BACKUP
+        echo "cp --preserve $VIMRC $VIMRC_BACKUP"
+        echo "cp --preserve $VIMFOLDER $VIMFOLDER_BACKUP"
     fi
 
-    cp vimrc $VIMRC
-    cp vim $VIMFOLDER
+    echo "cp --preserve vimrc $VIMRC"
+    echo "cp --preserve vim $VIMFOLDER"
 
     echo "Done!"
 # Uninstall
 else
     if [ -f $VIMRC_BACKUP ]; then
         echo "Restoring previous config..."
-        mv $VIMRC_BACKUP $VIMRC
-        mv $VIM_FOLDER_BACKUP $VIM_FOLDER
+        echo "mv $VIMRC_BACKUP $VIMRC"
+        echo "mv $VIMFOLDER_BACKUP $VIMFOLDER"
     else
-        echo "No previous config found!"
+        echo "Error: No previous config found!"
         exit 1
     fi
 fi
 
 exit 0
+

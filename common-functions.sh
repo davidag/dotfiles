@@ -5,6 +5,8 @@
 # Description:  Common functions used in setup scripts.
 #==============================================================================
 
+FILE_EXT=".bck"
+FOLDER_EXT="_bck"
 
 #=== FUNCTION =================================================================
 # Name:         check_and_install_package
@@ -20,4 +22,18 @@ function check_and_install_package() {
     fi
 }
 
+#=== FUNCTION =================================================================
+# Name:         check_if_already_backed_up
+# Description:  check if any of the params has been already backed up.
+# Param n:      file or folder full path 
+#==============================================================================
+function check_if_already_backed_up() {
+    for element in "$@"; do
+        if [ -f "${element}$FILE_EXT" -o -d "${element}$FOLDER_EXT" ]; then
+            echo "Previous backup found for '$element'"
+            return 1
+        fi
+    done
+    return 0
+}
 
