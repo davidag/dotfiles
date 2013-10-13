@@ -5,54 +5,33 @@
 # Description:  Install the tools and files needed to use git repos.
 #==============================================================================
 
-source common-config.sh
+source common-functions.sh
 
-#=== FUNCTION =================================================================
-# Name:         usage
-# Description:  Display usage information for this script.
-# Params:       ---
-#==============================================================================
-function usage() {
-    echo "Usage: $0 [-i|-u]"
-    echo "  -i: installs the environment to work with git"
-    echo "  -u: uninstalls the environment previously installed."
-    exit 1
-}
-
-#=== FUNCTION =================================================================
-# Name:         check_already_installed()
-# Description:  Checks if there's a previous installation.
-# Params:       ---
-#==============================================================================
-function check_git_config_already_installed() {
-    if [ -f ~/.gitconfig.bck ]; then
-        echo "Previous git info backup found! Abort"
-        exit 1
-    fi
-}
+GITCONFIG="$HOME/.gitconfig"
 
 #------------------------------------------------------------------------------
 # Main program
 #------------------------------------------------------------------------------
 
-# Check script param
 if [ "$1" != "-i" -a "$1" != "-u" ]; then
-    usage
+    echo "Usage: $0 [-i|-u]"
+    echo "  -i: installs the environment to work with git"
+    echo "  -u: uninstalls the environment previously installed."
+    exit 1
 fi
 
-# Install
 if [ "$1" == "-i" ]; then
-    echo "Checking if git config is already installed..."
-    check_git_config_already_installed
+    echo "Checking git config already installed..."
+    check_if_already_backed_up $GITCONFIG || \
+        { echo "Aborting installation..."; exit 1; }
 
     echo "Checking needed packages..."
     check_and_install_packages git-core
 
-    if [ -f ~/.gitconfig ]; then
-        echo "Backing up previous git global info in ~/.gitconfig.bck"
-        cp --preserve ~/.gitconfig ~/.gitconfig.bck
-    fi
-
+    echo "Backing up your files..."
+    do_backup $GITCONFIG || \
+        { echo "Aborting installation..."; exit 1; }
+    
     echo "Setting up your git global info..."
     read -p "Enter your name (firstname secondname): " name
     git config --global user.name "$name"
@@ -61,13 +40,10 @@ if [ "$1" == "-i" ]; then
     fi
     git config --global user.email "$email"
     echo "Done!"
-# Uninstall
 else
-    if [ -f ~/.gitconfig.bck ]; then
-        echo "Restoring git global config..."
-        cp --preserve ~/.gitconfig.bck ~/.gitconfig
-        rm ~/.gitconfig.bck
-    fi
+    echo "Restoring previous config..."
+    do_restore $GITCONFIG || \
+        { echo "Aborting restoration..."; exit 1; }
 fi
 
 exit 0
