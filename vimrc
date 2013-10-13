@@ -97,6 +97,10 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 
+" vim-scripts repos
+Bundle 'a.vim'
+Bundle 'ack.vim'
+
 
 filetype plugin indent on " required!
 
