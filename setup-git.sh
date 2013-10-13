@@ -46,7 +46,7 @@ if [ "$1" == "-i" ]; then
     check_git_config_already_installed
 
     echo "Checking needed packages..."
-    check_and_install_package git-core
+    check_and_install_packages git-core
 
     if [ -f ~/.gitconfig ]; then
         echo "Backing up previous git global info in ~/.gitconfig.bck"

@@ -21,18 +21,21 @@ set expandtab        " expand tabs to spaces
 " turn syntax highlighting on
 set t_Co=256
 syntax on
-colorscheme wombat256
+" on installation of my dotfiles this scheme does not exist, avoid error msg!
+silent! colorscheme wombat256mod
 " highlight matching braces
 set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
 """"" SEARCH RESULT HIGHLIGHT
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hls
 " Set a shortcut to mute highlight until next search (Practical Vim, tip 80)
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 """""" SEARCH WITH ACK
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set grepprg=ack\ --ignore-file=is:tags\ --ignore-dir=Release\ --ignore-dir=Debug\ --no-group\ --column\ $*
 set grepformat=%f:%l:%c:%m
 
@@ -100,6 +103,7 @@ Bundle 'majutsushi/tagbar'
 " vim-scripts repos
 Bundle 'a.vim'
 Bundle 'ack.vim'
+Bundle 'wombat256.vim'
 
 
 filetype plugin indent on " required!

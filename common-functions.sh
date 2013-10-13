@@ -9,17 +9,20 @@ FILE_EXT=".bck"
 FOLDER_EXT="_bck"
 
 #=== FUNCTION =================================================================
-# Name:         check_and_install_package
-# Description:  Checks if a packages is installed and installs it if not.
+# Name:         check_and_install_packages
+# Description:  Checks if a list of packages are installed and installs those
+#                   that are not installed.
 # Param 1:      package name
 #==============================================================================
-function check_and_install_package() {
-    echo "Checking $1 package..."
-    dpkg -s $1 > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        echo "Package $1 not present. Installing..."
-        sudo apt-get install $1
-    fi
+function check_and_install_packages() {
+    for pkg in "$@"; do
+        echo "Checking $pkg package..."
+        dpkg -s $pkg > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            echo "Package $pkg not present. Installing..."
+            sudo apt-get install $pkg
+        fi
+    done
 }
 
 #=== FUNCTION =================================================================
@@ -73,7 +76,10 @@ function do_restore() {
             mv $backup_file_path $element
         elif [ -d "$backup_folder_path" ]; then
             echo "Restoring folder: $backup_folder_path -> $element"
-            mv --no-target-directory $backup_folder_path $element
+            rsync --archive --delete "${backup_folder_path}/" $element || \
+                { echo "Error: restoring '$backup_folder_path'"; return 1; }
+            rm --recursive --force $backup_folder_path || \
+                { echo "Warning: restoring '$backup_folder_path'"; return 1; }
         else
             echo "Error: No backup for '$element'"
             return 1
@@ -81,7 +87,6 @@ function do_restore() {
     done
     return 0
 }
-
 
 #=== FUNCTION =================================================================
 # Name:         do_install

@@ -27,14 +27,20 @@ if [ "$1" == "-i" ]; then
         { echo "Aborting installation..."; exit 1; }
 
     echo "Checking needed packages..."
-    check_and_install_package vim
+    check_and_install_packages vim ack
 
     echo "Backing up your files..."
     do_backup $VIMRC $VIMFOLDER || \
         { echo "Aborting installation..."; exit 1; }
 
     echo "Installing config files..."
-    do_install $VIMRC $VIMFOLDER
+    do_install $VIMRC
+    
+    echo "Installing vundle..."
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+    echo "Installing vundle packages..."
+    vim +BundleInstall +qall
 
     echo "Done!"
 else
