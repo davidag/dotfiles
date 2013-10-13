@@ -1,10 +1,10 @@
 " http://gergap.wordpress.com/2009/05/29/minimal-vimrc-for-cc-developers/
 " disable vi compatibility (emulation of old bugs)
-set nocompatible
-filetype off " required for vundle
+set nocompatible " be iMproved
+filetype off " required by vundle
 
 """""" INDENTATION
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use indentation of previous line
 set autoindent
 " use intelligent indentation for C
@@ -17,7 +17,7 @@ set expandtab        " expand tabs to spaces
 " set textwidth=100
 
 """""" SYNTAX HIGHLIGHT
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " turn syntax highlighting on
 set t_Co=256
 syntax on
@@ -37,14 +37,14 @@ set grepprg=ack\ --ignore-file=is:tags\ --ignore-dir=Release\ --ignore-dir=Debug
 set grepformat=%f:%l:%c:%m
 
 """""" ENCODING
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " output encoding shown in the terminal latin1 (used in most projects)
 "set encoding=latin1
 " output encoding of the file that is written
 set fileencoding=latin1
 
 """""" KEY MAPPING
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key remapping to accomodate my spanish keyboard.
 nnoremap ñ l
 nnoremap l k
@@ -83,6 +83,8 @@ endif
 " Line numbers
 set number
 
+"""""" VUNDLE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -90,7 +92,9 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-Bundle 'ctrlp.vim'
+" My Bundles
+" original repos on github
+Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 
 
