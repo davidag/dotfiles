@@ -31,14 +31,18 @@ if [ "$1" == "-i" ]; then
     echo "Backing up your files..."
     do_backup $GITCONFIG || \
         { echo "Aborting installation..."; exit 1; }
-    
+
+    echo "Installing config files..."
+    do_install $GITCONFIG
+ 
     echo "Setting up your git global info..."
+
     read -p "Enter your name (firstname secondname): " name
     git config --global user.name "$name"
-    if [ "$email" == "" ]; then
-        read -p "Enter your e-mail address: " 
-    fi
+
+    read -p "Enter your e-mail address: " email
     git config --global user.email "$email"
+
     echo "Done!"
 else
     echo "Restoring previous config..."
