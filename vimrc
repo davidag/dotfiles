@@ -16,18 +16,6 @@ set expandtab        " expand tabs to spaces
 " wrap lines at 100 chars. 80 is somewaht antiquated with nowadays displays.
 " set textwidth=100
 
-"""""" SYNTAX HIGHLIGHT
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" turn syntax highlighting on
-set t_Co=256
-syntax on
-" on installation of my dotfiles this scheme does not exist, avoid error msg!
-silent! colorscheme wombat256mod
-" highlight matching braces
-set showmatch
-" intelligent comments
-set comments=sl:/*,mb:\ *,elx:\ */
-
 """"" SEARCH RESULT HIGHLIGHT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hls
@@ -107,4 +95,17 @@ Bundle 'wombat256.vim'
 
 
 filetype plugin indent on " required!
+
+"""""" SYNTAX HIGHLIGHT 
+"""""  (color schemes managed with vundle must be loaded after Bundle '')
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" turn syntax highlighting on
+set t_Co=256
+syntax on
+" on installation of my dotfiles this scheme does not exist, avoid error msg!
+silent! colorscheme wombat256mod
+" highlight matching braces
+set showmatch
+" intelligent comments
+set comments=sl:/*,mb:\ *,elx:\ */
 
