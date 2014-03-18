@@ -37,20 +37,9 @@ set fileencoding=latin1
 """""" KEY MAPPING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key remapping to accomodate my spanish keyboard.
-nnoremap ñ l
-nnoremap l k
-nnoremap k j
-nnoremap j h
-
-vnoremap ñ l
-vnoremap l k
-vnoremap k j
-vnoremap j h
-
-nnoremap <C-w>ñ <C-w>l
-nnoremap <C-w>l <C-w>k
-nnoremap <C-w>k <C-w>j
-nnoremap <C-w>j <C-w>h
+"nnoremap ñ l
+"vnoremap ñ l
+"nnoremap <C-w>ñ <C-w>l
 
 " To enable/disable paste (allows to paste into vim buffer avoding autotabs).
 set pastetoggle=<F2>
