@@ -1,7 +1,43 @@
 " http://gergap.wordpress.com/2009/05/29/minimal-vimrc-for-cc-developers/
 " disable vi compatibility (emulation of old bugs)
-set nocompatible " be iMproved
+set nocompatible " be iMproved, required by bundle
 filetype off " required by vundle
+
+"""""" VUNDLE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Bundle 'gmarik/Vundle.vim'
+
+" My plugins 
+" original repos on github
+Bundle 'kien/ctrlp.vim'
+" Bundle 'majutsushi/tagbar'
+
+" vim-scripts repos
+Bundle 'a.vim'
+Bundle 'ack.vim'
+" Bundle 'wombat256.vim'
+
+call vundle#end()         " required
+filetype plugin indent on " required
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 """""" INDENTATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,10 +78,13 @@ set pastetoggle=<F2>
 nnoremap <f5> :!ctags -R --exclude=.git --exclude=CVS --languages=c++,c --c++-kinds=+p --fields=+iaS --extra=+q<CR>
 
 """""" TAGBAR
-nmap <F8> :TagbarToggle<CR>
+"nmap <F8> :TagbarToggle<CR>
 
 """""" CTRL-P
-set wildignore+=*/Debug/*,*/Release/*
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/Debug*,*/Release*
 
 """""" PYTHON
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -57,28 +96,6 @@ endif
 
 " Line numbers
 set number
-
-"""""" VUNDLE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My Bundles
-" original repos on github
-Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-
-" vim-scripts repos
-Bundle 'a.vim'
-Bundle 'ack.vim'
-Bundle 'wombat256.vim'
-
-
-filetype plugin indent on " required!
 
 """""" SYNTAX HIGHLIGHT 
 """""  (color schemes managed with vundle must be loaded after Bundle '')

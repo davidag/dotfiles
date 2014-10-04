@@ -37,10 +37,10 @@ if [ "$1" == "-i" ]; then
     do_install $VIMRC
     
     echo "Installing vundle..."
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
 
     echo "Installing vundle packages..."
-    vim +BundleInstall +qall
+    vim +PluginInstall +qall
 
     echo "Done!"
 else
