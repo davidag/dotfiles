@@ -60,7 +60,7 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 """""" SEARCH WITH ACK
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set grepprg=ack\ --ignore-file=is:tags\ --ignore-dir=Release\ --ignore-dir=Debug\ --no-group\ --column\ $*
+set grepprg=ack-grep\ --ignore-file=is:tags\ --ignore-dir=Release\ --ignore-dir=Debug\ --no-group\ --column\ $*
 set grepformat=%f:%l:%c:%m
 
 """""" ENCODING
