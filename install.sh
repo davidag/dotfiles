@@ -8,4 +8,5 @@ done
 stow -v -S urxvt
 stow -v -S vim
 stow -v -S git
+stow -v -S bash
 
