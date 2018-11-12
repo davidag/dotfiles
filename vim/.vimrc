@@ -14,4 +14,4 @@ set paste
 set ruler
 
 " remove trailing whitespaces on some file extensions
-autocmd FileType markdown,php,bash,javascript autocmd BufWritePre,BufRead <buffer> %s/\s+$//e
+autocmd FileType markdown,php,sh,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
