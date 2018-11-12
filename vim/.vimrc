@@ -13,3 +13,5 @@ set paste
 " show line and col number of the cursor position
 set ruler
 
+" remove trailing whitespaces on some file extensions
+autocmd FileType markdown,php,bash,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
