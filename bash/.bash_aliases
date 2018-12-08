@@ -12,3 +12,6 @@ alias gra='git remote add'
 alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
+
+# Obtain WAN IP: https://askubuntu.com/questions/95910/command-for-determining-my-public-ip
+alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
