@@ -117,3 +117,9 @@ if [ -f ~/.bash_local ]; then
     source ~/.bash_local
 fi
 
+# Disable npm update notifier to reduce execution time and possible hangs.
+export NO_UPDATE_NOTIFIER=
+
+# Disable CTRL+S/Q (XON/XOFF flow control)
+# https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
+stty -ixon
