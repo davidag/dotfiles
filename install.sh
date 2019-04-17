@@ -1,7 +1,8 @@
 #!/bin/sh
-set -ex
+set -e
 
 for pkg in git stow vim; do
+    { dpkg -l | grep -q " $pkg "; } && continue
     sudo apt install --yes $pkg
 done
 
