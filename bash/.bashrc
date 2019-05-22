@@ -123,3 +123,6 @@ export NO_UPDATE_NOTIFIER=
 # Disable CTRL+S/Q (XON/XOFF flow control)
 # https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
 stty -ixon
+
+# Disable Python bytecode generation (*.pyc)
+export PYTHONDONTWRITEBYTECODE=1
