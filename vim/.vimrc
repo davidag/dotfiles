@@ -1,6 +1,7 @@
 " plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible' " sensible vim defaults
+Plug 'tpope/vim-surround'
 Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
 Plug 'vim-scripts/taglist.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
