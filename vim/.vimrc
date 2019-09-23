@@ -5,6 +5,8 @@ Plug 'tpope/vim-surround'
 Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
 Plug 'vim-scripts/taglist.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " leader key
@@ -45,3 +47,6 @@ let Tlist_Use_Right_Window = 1
 let Tlist_File_Fold_Auto_Close = 1
 map <F7> :TlistToggle<CR>
 nnoremap <f5> :!ctags -R<CR>
+
+" fuzzy file finder
+nnoremap <C-P> :Files<CR>
