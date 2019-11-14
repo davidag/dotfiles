@@ -6,8 +6,6 @@ for pkg in git stow vim; do
     sudo apt install --yes $pkg
 done
 
-stow -v -S xorg
-stow -v -S vim
-stow -v -S git
-stow -v -S bash
-
+for dir in $(find . -maxdepth 1 -type d -name '[!.]*' | xargs basename -a); do
+    stow -v -S "$dir"
+done
