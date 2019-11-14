@@ -21,4 +21,4 @@ wget -N $FFX_URL
 echo "Installing as root..."
 sudo tar -jxvf firefox-${FFX_CUR}.tar.bz2 -C /opt
 
-rm firefox-{$FFX_CUR}.tar.bz2
+rm firefox-${FFX_CUR}.tar.bz2
