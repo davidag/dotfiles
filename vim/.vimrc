@@ -16,7 +16,6 @@ map <space> <leader>
 colorscheme badwolf
 
 " ui config
-set number      " show line numbers
 set cursorline  " highlight current line
 
 " indendation and tabs
@@ -28,6 +27,10 @@ set expandtab       " expand tabs to spaces
 au FileType py set cinwords=if,elif,else,for,while,try,except,finally,def,class " add python-specific keywords
 au FileType py set smartindent " indent after lines starting with for, if,...
 au FileType py set textwidth=79 " PEP-8 max line length
+
+" html/css
+au FileType css,html set tabstop=2
+au FileType css,html set shiftwidth=2
 
 " search
 set hlsearch    " highlight matches
