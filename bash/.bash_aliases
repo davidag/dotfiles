@@ -13,7 +13,7 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias gdf='gitk --follow --all -p'
-alias glt='git log --abbrev-commit --graph --format=oneline'
+alias glt='git log --abbrev-commit --graph --format=oneline master HEAD'
 
 # Obtain WAN IP: https://askubuntu.com/questions/95910/command-for-determining-my-public-ip
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
