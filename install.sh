@@ -7,5 +7,5 @@ for pkg in git stow vim; do
 done
 
 for dir in $(find . -maxdepth 1 -type d -name '[!.]*' | xargs basename -a); do
-    stow -v -S "$dir"
+    stow --verbose --dotfiles --no-folding --stow "$dir"
 done
