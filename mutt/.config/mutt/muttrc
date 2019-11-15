@@ -1,0 +1,63 @@
+source ~/.config/mutt/secret
+
+# imap
+set imap_user="$my_user"
+set imap_pass="$my_pass"
+set folder="imaps://mail.davidalfonso.es/"
+set spoolfile=+INBOX
+set postponed=+INBOX.Drafts
+set record=+INBOX.Sent
+set imap_check_subscribed
+set imap_keepalive=300
+set mail_check=30
+set timeout=30
+unset imap_passive
+
+# smtp
+set smtp_url="smtps://$my_user@mail.davidalfonso.es/"
+set smtp_pass="$my_pass"
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+# identity
+set realname='David Alfonso'
+set from='developer@davidalfonso.es'
+set use_from
+
+# editor
+set editor='vim +/^$ +noh "+set tw=72"'
+set edit_headers=yes
+
+# index
+macro index a '<save-message>=INBOX.Archive<enter>y'
+bind index G last-entry
+bind index gg first-entry
+bind index R group-reply
+bind index <space> collapse-thread
+bind index \cU half-up
+bind index \cD half-down
+bind index \cB previous-page
+bind index \cF next-page
+set sort="threads"
+set sort_aux="reverse-last-date-received"
+set strict_threads
+set narrow_tree
+set fast_reply
+set date_format="%Y-%m-%d %H:%m"
+set index_format="%D %Z %-15.15L %s"
+
+# pager
+set pager_stop
+unset markers
+bind pager gg top
+bind pager G bottom
+bind pager R group-reply
+bind pager j next-line
+bind pager k previous-line
+bind pager \Cu half-up
+bind pager \Cd half-down
+bind pager \Cf next-page
+bind pager \Cb previous-page
+bind pager <space> next-page
+bind pager <backspace> previous-page
+macro pager d "<save-message>=INBOX.Trash<enter>"
