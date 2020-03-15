@@ -16,22 +16,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# path for pipx-exposed apps
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# path for Poetry
-if [ -d "$HOME/.poetry/bin" ] ; then
-    PATH="$HOME/.poetry/bin:$PATH"
-fi
-
-# Autostart X at login
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    exec startx
-fi
+export EDITOR=vim
+export PATH=$HOME/.cargo/bin:~/poetry/bin:~/bin:$PATH
+export LANG=en_US.UTF-8
+export GDK_BACKEND=wayland
