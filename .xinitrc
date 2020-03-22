@@ -1,3 +1,3 @@
 xrdb ~/.config/Xresources
-setxkbmap -option caps:escape
+setxkbmap -option caps:ctrl_modifier
 exec i3
