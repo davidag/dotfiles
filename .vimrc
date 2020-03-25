@@ -58,7 +58,7 @@ let Tlist_Close_On_Select = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_File_Fold_Auto_Close = 1
 map <F7> :TlistToggle<CR>
-nnoremap <f5> :!ctags -R<CR>
+nnoremap <f5> :!ctags -R --exclude=venv<CR>
 
 " fuzzy file finder
 nnoremap <C-P> :Files<CR>
