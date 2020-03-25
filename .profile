@@ -19,4 +19,7 @@ fi
 export EDITOR=vim
 export PATH=$HOME/.cargo/bin:~/poetry/bin:~/bin:$PATH
 export LANG=en_US.UTF-8
-export GDK_BACKEND=wayland
+
+# let apps choose their backend
+# export GDK_BACKEND=wayland
+# export GDK_BACKEND=x11
