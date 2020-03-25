@@ -1,13 +1,13 @@
 set nocompatible
 filetype off
 
-" plugins
+" use vim-plug as plugin manager
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible' " sensible vim defaults
 Plug 'tpope/vim-surround'
-Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
+" Plug 'alfredodeza/khuno.vim', { 'for': 'python' }
 Plug 'vim-scripts/taglist.vim'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
