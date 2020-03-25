@@ -21,3 +21,8 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 # Shortcuts
 alias g="grep"
 alias v="vim"
+
+# Python
+alias activate='deactivate 2> /dev/null; source venv/bin/activate 2> /dev/null && \
+                echo "Activated $VIRTUAL_ENV" || \
+                echo "Error: No venv directory in current path"'
