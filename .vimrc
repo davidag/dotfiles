@@ -1,3 +1,6 @@
+set nocompatible
+filetype off
+
 " plugins
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible' " sensible vim defaults
@@ -9,6 +12,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
+filetype plugin indent on
+
+" force 256 colors even if terminal advertises other number (eg. tmux)
+set t_Co=256
+
 " leader key
 map <space> <leader>
 
@@ -19,9 +27,10 @@ colorscheme badwolf
 set cursorline  " highlight current line
 
 " indendation and tabs
-set tabstop=4       " default number of spaces that a <Tab> in the file counts for.
+set tabstop=4       " default number of spaces that a <Tab> in the file counts for
 set shiftwidth=4    " default number of spaces to use for each indent
 set expandtab       " expand tabs to spaces
+set autoindent      " copy indentantion from current line when starting a new line
 
 " python
 au FileType py set cinwords=if,elif,else,for,while,try,except,finally,def,class " add python-specific keywords
