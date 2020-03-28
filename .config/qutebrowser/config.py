@@ -1778,6 +1778,7 @@
 # config.bind('pp', 'open -- {clipboard}')
 # config.bind('q', 'record-macro')
 # config.bind('r', 'reload')
+config.bind('sp', 'open -t https://pinboard.in/add?url={url}&description={clipboard}&title={title}')
 # config.bind('sf', 'save')
 # config.bind('sk', 'set-cmd-text -s :bind')
 # config.bind('sl', 'set-cmd-text -s :set -t')
@@ -1904,6 +1905,9 @@
 
 ## Bindings for passthrough mode
 # config.bind('<Shift-Escape>', 'leave-mode', mode='passthrough')
+
+# My keyboard has a shared Escape key with ~ and ` so shift+esc just outputs ~
+config.bind('<Escape>', 'leave-mode', mode='passthrough')
 
 ## Bindings for prompt mode
 # config.bind('<Alt-B>', 'rl-backward-word', mode='prompt')
