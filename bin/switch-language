@@ -1,0 +1,5 @@
+#!/bin/sh
+
+( setxkbmap -query | grep -q '^layout:[[:space:]]*us$' ) && setxkbmap es || setxkbmap us
+
+setxkbmap -option caps:ctrl_modifier
