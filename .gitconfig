@@ -4,8 +4,8 @@
     safecrlf = true
 [color]
     diff = true
-    status = true
-    branch = true
+    status = auto
+    branch = auto
     ui = true
 [color "branch"]
     current = yellow reverse
@@ -25,7 +25,8 @@
     ci = commit
     st = status
     br = branch
-    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    hist = log --follow --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
     mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
