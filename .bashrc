@@ -144,4 +144,6 @@ stty -ixon
 # Disable Python bytecode generation (*.pyc)
 export PYTHONDONTWRITEBYTECODE=1
 
-source ~/.config/broot/launcher/bash/br
+[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
