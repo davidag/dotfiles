@@ -17,7 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 export EDITOR=vim
-export PATH=$HOME/.cargo/bin:~/poetry/bin:~/bin:$PATH
+export PATH=$HOME/.cargo/bin:~/poetry/bin:~/bin:~/.local/bin/:$PATH
 export LANG=en_US.UTF-8
 
 # let apps choose their backend
