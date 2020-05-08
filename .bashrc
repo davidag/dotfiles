@@ -112,6 +112,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# debian package utilities
+pkg-search() {
+	apt-cache show "$1" 2>/dev/null
+	[ $? -eq 0 ] && return
+	dpkg -S "$(which $1)" | cut -d':' -f1 | xargs apt-cache show
+	[ $? -eq 0 ] && return
+	apt-file search "$1"
+}
+
 # Python
 activate() {
 	deactivate 2> /dev/null
