@@ -112,6 +112,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Python
+activate() {
+	deactivate 2> /dev/null
+	[ -d "venv" ] && source venv/bin/activate && echo "Activated $VIRTUAL_ENV"
+	[ -d ".venv" ] && source .venv/bin/activate && echo "Activated $VIRTUAL_ENV"
+	[ -z "$VIRTUAL_ENV" ] && echo "Error: No venv or .venv directory in current path"
+}
+
 # local config
 if [ -f ~/.bash_local ]; then
     source ~/.bash_local
