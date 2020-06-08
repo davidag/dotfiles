@@ -128,6 +128,12 @@ activate() {
 	[ -d ".venv" ] && source .venv/bin/activate && echo "Activated $VIRTUAL_ENV"
 	[ -z "$VIRTUAL_ENV" ] && echo "Error: No venv or .venv directory in current path"
 }
+pip-upgrade() {
+	pip list --outdated --format=freeze \
+		| grep -v '^\-e' \
+		| cut -d'=' -f1 \
+		| xargs -n1 pip install -U
+}
 
 # local config
 if [ -f ~/.bash_local ]; then
