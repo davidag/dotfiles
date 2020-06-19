@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -eu
+
+DEFAULT_REMOTE="remote"
+
+function error() {
+    echo "Error: $1"
+    exit 1
+}
+
+function warning() {
+    echo "Warning: $1"
+}
+
+[ $# -ne 1 ] && error "Usage: rclone-lsl-sorted remote:path"
+[ ! -d "$1" ] && error "Not a folder"
+
+path="$1"
+
+rclone lsl "$path" |
+while read -r line ; do
+    filename="$(echo $line | cut -f4- -d' ')"
+    if echo "$filename" | grep -q "^\.git/"; then
+        continue
+    fi
+    datetime="$(echo $line | cut -f2-3 -d' ')"
+    timestamp=$(date +%s -d "$datetime")
+	echo "$timestamp $filename"
+done |
+sort -r |
+while read -r line ; do
+    filename="$(echo $line | cut -f2- -d' ')"
+    timestamp="$(echo $line | cut -f1 -d' ')"
+	echo "$(date -d @$timestamp) $filename"
+done
