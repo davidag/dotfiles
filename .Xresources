@@ -1,4 +1,5 @@
-Xcursor.size: 16
+Xft.dpi: 144
+Xcursor.size: 32
 
 #define base00 #333333
 #define base01 #393939
