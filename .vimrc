@@ -24,8 +24,7 @@ map <space> <leader>
 
 " colors
 syntax enable
-" colorscheme ron
-colorscheme base16-default-dark
+colorscheme base16-seti
 
 " indendation and tabs
 set tabstop=4       " default number of spaces that a <Tab> in the file counts for
