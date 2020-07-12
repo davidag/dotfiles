@@ -4,13 +4,14 @@ filetype off
 " use vim-plug as plugin manager
 call plug#begin('~/.vim/plugged')
 " basic
-Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
-" syntax highlighting
+" syntax / theming / ui
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown'
 call plug#end()
 
@@ -24,7 +25,8 @@ map <space> <leader>
 
 " colors
 syntax enable
-colorscheme base16-seti
+colorscheme gruvbox
+set background=dark
 
 " indendation and tabs
 set tabstop=4       " default number of spaces that a <Tab> in the file counts for
