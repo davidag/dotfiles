@@ -135,6 +135,13 @@ pip-upgrade() {
 		| xargs -n1 pip install -U
 }
 
+# misc
+unzd() {
+	if [[ $# != 1 ]]; then echo Single argument required; return 1; fi
+	target="${1%.zip}"
+	unzip "$1" -d "${target##*/}"
+}
+
 # local config
 if [ -f ~/.bash_local ]; then
     source ~/.bash_local
