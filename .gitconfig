@@ -2,6 +2,7 @@
     editor = vim
     autocrlf = false
     safecrlf = true
+    excludesfile = ~/.gitignore_global
 [color]
     diff = true
     status = auto
