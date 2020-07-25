@@ -12,9 +12,6 @@ font pango:DejaVu Sans Mono 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# avoid focus to follow mouse
-focus_follows_mouse off
-
 # disable focus wrapping
 focus_wrapping no
 
