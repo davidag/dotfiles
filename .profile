@@ -20,6 +20,10 @@ fi
 optdirs="$(echo /opt/*)"
 export PATH="${optdirs// /:}:$PATH"
 
+# add all ~/opt directories to path
+optdirs="$(echo ~/opt/*)"
+export PATH="${optdirs// /:}:$PATH"
+
 export EDITOR=vim
 export PATH=$HOME/.cargo/bin:~/poetry/bin:~/bin:~/.local/bin/:$PATH
 export LANG=en_US.UTF-8
