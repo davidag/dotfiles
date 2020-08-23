@@ -37,6 +37,8 @@ set autoindent      " copy indentantion from current line when starting a new li
 autocmd FileType python setlocal et ts=4 sw=4
 autocmd FileType html,css setlocal et ts=2 sw=2
 autocmd FileType htmldjango setlocal et ts=2 sw=2
+autocmd FileType yaml setlocal et ts=2 sw=2
+autocmd FileType sh setlocal noet ts=4 sw=4
 
 " search
 set hlsearch    " highlight matches
