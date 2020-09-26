@@ -136,6 +136,11 @@ unzd() {
 	target="${1%.zip}"
 	unzip "$1" -d "${target##*/}"
 }
+topf() {
+	local dir="${1:-.}"
+	local num="${2:-10}"
+	du -ha $dir | sort -hr | head -n $num
+}
 
 # local config
 if [ -f ~/.bash_local ]; then
