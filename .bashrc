@@ -19,6 +19,9 @@ shopt -s histappend
 HISTSIZE=999999
 HISTFILESIZE=999999
 
+# append last history item before each command prompt
+export PROMPT_COMMAND='history -a'
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -163,3 +166,5 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 [ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f ~/.z.sh ] && source ~/.z.sh
