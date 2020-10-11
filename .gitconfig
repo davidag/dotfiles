@@ -25,7 +25,7 @@
     co = checkout
     ci = commit
     st = status
-    br = branch
+	br = for-each-ref --sort=-committerdate refs/heads/ refs/remotes/origin/ --format='%(HEAD) %(color:red)%(objectname:short)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) - %(color:green)%(committerdate:relative)%(color:reset)'
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     hist = log --follow --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
