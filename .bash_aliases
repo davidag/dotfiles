@@ -16,10 +16,9 @@ alias grr='git remote rm'
 alias gr='git restore'
 alias gpu='git pull'
 alias gkdf='gitk --follow --all -p'
-alias gl='git log --color --abbrev-commit --format=oneline HEAD'
-alias glt='git log --color --abbrev-commit --graph --format=oneline master HEAD'
 alias gw='git worktree'
 alias gprune='git remote prune origin | cut -d/ -f2- | tail -n +3 | xargs git branch -d'
+alias gparent='git show-branch | sed "s/].*//" | grep "\*" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed "s/^.*\[//"'
 
 # Obtain WAN IP: https://askubuntu.com/questions/95910/command-for-determining-my-public-ip
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
