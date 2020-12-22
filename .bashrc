@@ -10,14 +10,17 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=999999
-HISTFILESIZE=999999
+export HISTSIZE=999999
+export HISTFILESIZE=999999
+
+# Don't save 1- or 2-letter commands, or space-started commands, or duplicates.
+export HISTIGNORE='?:??: *:&'
 
 # append last history item before each command prompt
 export PROMPT_COMMAND='history -a'
