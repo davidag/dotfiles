@@ -27,7 +27,7 @@
     st = status
 	br = for-each-ref --sort=-committerdate refs/heads/ refs/remotes/origin/ --format='%(HEAD) %(color:red)%(objectname:short)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) - %(color:green)%(committerdate:relative)%(color:reset)'
 	l = log --color --abbrev-commit --format=oneline HEAD
-	ll = log --color --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ll = log --color --graph --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset%s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit
     hist = log --follow --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
