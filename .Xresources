@@ -1,65 +1,85 @@
 Xft.dpi: 144
 Xcursor.size: 32
 
-#define base00 #333333
-#define base01 #393939
-#define base02 #515151
-#define base03 #747369
-#define base04 #a09f93
-#define base05 #d3d0c8
-#define base06 #e8e6df
-#define base07 #f2f0ec
-#define base08 #f2777a
-#define base09 #f99157
-#define base0A #ffcc66
-#define base0B #99cc99
-#define base0C #66cccc
-#define base0D #6699cc
-#define base0E #cc99cc
-#define base0F #d27b53
+! xterm customizations from
+! http://unixsheikh.com/articles/the-terminal-the-console-and-the-shell-what-are-they.html
+XTerm*faceName: "DejaVu Sans Mono"
+XTerm*faceSize: 12
+XTerm*renderFont: true
+! Dynamically change font size with CTRL+SHIFT+PageUp/PageDown
+XTerm*faceSize1: 12
+XTerm*faceSize2: 14
+XTerm*faceSize3: 16
+XTerm*faceSize4: 18
+XTerm*faceSize5: 20
+XTerm*faceSize6: 22
+XTerm*utf8: 1
+XTerm*termName: xterm-256color
+XTerm*borderWidth: 0
+XTerm*autohint: true
+XTerm*backarrowKey: false
+XTerm*bellIsUrgent: false
+XTerm*cursorBlink: false
+XTerm*ScrollKey: true
+! Fix ALT key (check in mc with Alt+h)
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
+XTerm*ttyModes: erase ^?
+XTerm*fastScroll: true
 
-URxvt*.foreground:   base05
-URxvt*.background:   base00
-URxvt*.cursorColor:  base05
+! I like a lot of scrollback.
+XTerm*saveLines: 100000
 
-URxvt*.color0:       #000000
-URxvt*.color1:       base08
-URxvt*.color2:       base0B
-URxvt*.color3:       base0A
-URxvt*.color4:       base0D
-URxvt*.color5:       base0E
-URxvt*.color6:       base0C
-URxvt*.color7:       base05
+! Use CLIPBOARD by default.
+XTerm*selectToClipboard: true
+! Hack xterm to add selection to both PRIMARY and CLIPBOARD.
+<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 
-URxvt*.color8:       base03
-URxvt*.color9:       base08
-URxvt*.color10:      base0B
-URxvt*.color11:      base0A
-URxvt*.color12:      base0D
-URxvt*.color13:      base0E
-URxvt*.color14:      base0C
-URxvt*.color15:      base07
+! xterm defines a whole suite of "actions" for manipulating the terminal e.g.
+! copy-selection(), hard-reset(), scroll-back(), etc. These actions can be
+! mapped to mouse/key combinations using the translations resource.
+!
+! Normally, selected text is stored in PRIMARY, to be pasted with Shift+Insert
+! or by using the middle mouse button. With these settings you can use
+! CTRL+SHIFT+v/c and you can make Xterm copy to clipboard so that you can use
+! CTRL+v in GUI applications.
+XTerm*translations: #override \n\
+    Shift Ctrl <Key>Prior: larger-vt-font() \n\
+    Shift Ctrl <Key>Next: smaller-vt-font() \n\
+    Shift Ctrl <Key>C: copy-selection(CLIPBOARD) \n\
+    Shift Ctrl <Key>V: insert-selection(CLIPBOARD) \n\
+    <Key>BackSpace: string(0x7f) \n\
+    <Key>Delete: string(0x1b) string("[3~")
 
-URxvt*.color16:      base09
-URxvt*.color17:      base0F
-URxvt*.color18:      base01
-URxvt*.color19:      base02
-URxvt*.color20:      base04
-URxvt*.color21:      base06
+! Base16 Gruvbox dark, hard
+! Scheme: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+XTerm*.foreground: #d5c4a1
+XTerm*.background: #1d2021
+XTerm*.cursorColor: #d5c4a1
 
-URxvt.background: base00
-URxvt.urgentOnBell: true
-URxvt.scrollBar: false
-URxvt*font: xft:DejaVu Sans Mono:size=12:antialias=true:hinting=true,xft:IPAGothic:size=10,xft:Baekmuk Gulim:size=12,xft:Noto Color Emoji:size=10
-URxvt.depth: 24
-URxvt.matcher.button: 1
-URxvt.url-launcher: firefox
-URxvt.perl-ext-common: default,matcher
-URxvt.inputMethod: fcitx
-URxvt.preeditType: OverTheSpot
+XTerm*.color0: #1d2021
+XTerm*.color1: #fb4934
+XTerm*.color2: #b8bb26
+XTerm*.color3: #fabd2f
+XTerm*.color4: #83a598
+XTerm*.color5: #d3869b
+XTerm*.color6: #8ec07c
+XTerm*.color7: #d5c4a1
 
-URxvt.internalBorder: 0
-URxvt.borderColor: base00
+XTerm*.color8: #665c54
+XTerm*.color9: #fb4934
+XTerm*.color10: #b8bb26
+XTerm*.color11: #fabd2f
+XTerm*.color12: #83a598
+XTerm*.color13: #d3869b
+XTerm*.color14: #8ec07c
+XTerm*.color15: #fbf1c7
 
-URxvt.iso14755: false
-URxvt.iso14755_52: false
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+XTerm*.color16: #fe8019
+XTerm*.color17: #d65d0e
+XTerm*.color18: #3c3836
+XTerm*.color19: #504945
+XTerm*.color20: #bdae93
+XTerm*.color21: #ebdbb2
