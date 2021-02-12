@@ -31,3 +31,5 @@ export LANG=en_US.UTF-8
 # let apps choose their backend
 # export GDK_BACKEND=wayland
 # export GDK_BACKEND=x11
+
+export PATH="$HOME/.poetry/bin:$PATH"
