@@ -25,7 +25,7 @@ optdirs="$(echo ~/opt/*)"
 export PATH="${optdirs// /:}:$PATH"
 
 export EDITOR=vim
-export PATH=$HOME/.cargo/bin:~/poetry/bin:~/bin:~/.local/bin/:$PATH
+export PATH=~/bin:~/.local/bin/:$PATH
 export LANG=en_US.UTF-8
 
 # let apps choose their backend
@@ -33,3 +33,12 @@ export LANG=en_US.UTF-8
 # export GDK_BACKEND=x11
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# setup pyenv if installed
+if [ -a "$HOME/.pyenv/bin/pyenv" ]; then
+	export PYENV_ROOT="$HOME/.pyenv"
+	command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
