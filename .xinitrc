@@ -1,4 +1,9 @@
 xrdb -merge ~/.Xresources
-xinput --set-prop 14 325 1.0
+
+# use caps key as ctrl key
 setxkbmap -option caps:ctrl_modifier
+
+# mouse speed, depends on usb port
+xinput --set-prop 9 333 1.0
+
 exec i3
