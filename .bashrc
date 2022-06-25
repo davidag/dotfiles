@@ -123,6 +123,13 @@ topf() {
 	du -ha $dir | sort -hr | head -n $num
 }
 
+# notes
+jrnl() {
+	cd $HOME/notes
+	local journal_file="journals/$(date +%Y-w%W).md"
+	vim $journal_file
+}
+
 # local config
 if [ -f ~/.bash_local ]; then
     source ~/.bash_local
