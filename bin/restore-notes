@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# this script restores a backup file encrypted with backup-notes
+
+
+main() {
+	if [ "$#" -lt 1 ] ; then
+	  echo 'restore-notes <backup-notes.tgz.gpg>'
+	  exit 1
+	fi
+
+	if [ ! -f "$1" ]; then
+	  echo 'invalid file!'
+	  exit 1
+	fi
+
+	enc_filepath=$1
+	dec_file=`basename ${enc_filepath/%.gpg/}`
+
+	dst_folder=$(basename $enc_filepath)
+	dst_folder=${dst_folder%%.*}
+
+	mkdir $dst_folder || exit 1
+
+	trap clean EXIT INT
+
+	gpg --output $dec_file --decrypt $enc_filepath
+
+	# strip components: home username notes
+	tar --extract --auto-compress --file=$dec_file --strip-components=3 --directory $dst_folder
+}
+
+
+clean() {
+  if [ ! -z "$dec_file" -a -f "$dec_file" ]; then
+	  rm $dec_file
+  fi
+  return 0
+}
+
+main "$@"

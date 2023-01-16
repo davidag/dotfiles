@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# from https://unixsheikh.com/tutorials/how-to-do-encrypted-incremental-backups-and-snapshots-with-gnu-tar-and-gnupg.html
+# but without incremental backups
+
+tar --use-compress-program=/home/david/bin/tarcryptor -cvf ~/Dropbox/backups/notes-$(date +%Y%m%d).tar.gz.gpg ~/notes
