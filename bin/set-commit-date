@@ -1,0 +1,25 @@
+# sets both git environment variables to the modification date of a given file
+
+# check script is being sourced, bash-only
+(return 0 2>/dev/null) && sourced=1 || sourced=0
+
+[ "$sourced" -eq 1 ] || { echo "error: this script must be sourced"; return 1; }
+
+# unset variables if no arguments
+[ "$#" -lt 1 ] && { export -n GIT_AUTHOR_DATE GIT_COMMITTER_DATE; return 0; }
+
+# check for reference file
+if [ -f "$1" ]; then
+	# set git variables to last file modification date
+	newdate=$(stat -c %y $1)
+	export GIT_AUTHOR_DATE="$newdate" GIT_COMMITTER_DATE="$newdate"
+	return 0
+fi
+
+# check for commit id
+commitdate=$(git log --pretty=format:"%aI" $1)
+
+if [ -n "$commitdate" ]; then
+	export GIT_AUTHOR_DATE="$commitdate" GIT_COMMITTER_DATE="$commitdate"
+	return 0
+fi
