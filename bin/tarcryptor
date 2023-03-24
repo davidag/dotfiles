@@ -1,0 +1,2 @@
+#!/bin/sh
+gzip -9 | gpg -c --cipher-algo AES256 --compress-algo none --yes -o - --trust-model=always -c
