@@ -9,6 +9,6 @@ Usage:
 
     cd ~
     git init
-    git remote add origin git@gitlab.com:davidalfonso/dotfiles.git
+    git remote add origin git@github.com:davidag/dotfiles.git
     git fetch
     git checkout -f master
