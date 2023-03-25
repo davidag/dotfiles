@@ -1,7 +1,9 @@
+# Git
 alias ga='git add'
 alias gf='git fetch'
 alias gp='git push'
 alias gs='git status'
+alias gsi='git status --ignored'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gds='git diff --stat'
@@ -28,6 +30,7 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 # Shortcuts
 alias g="grep"
 alias v="vim"
+alias dc='docker compose'
 
 # Filesystem
 alias ..='cd ..'
