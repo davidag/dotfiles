@@ -130,11 +130,6 @@ jrnl() {
 	vim $journal_file
 }
 
-# local config
-if [ -f ~/.bash_local ]; then
-    source ~/.bash_local
-fi
-
 # Disable npm update notifier to reduce execution time and possible hangs.
 export NO_UPDATE_NOTIFIER=
 
@@ -148,8 +143,8 @@ export PYTHONDONTWRITEBYTECODE=1
 # Disable pyenv prompt
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
+# local config
+if [ -f ~/.bash_local ]; then
+    source ~/.bash_local
+fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-[ -f ~/.z.sh ] && source ~/.z.sh
