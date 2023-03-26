@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -eu
+
+BACKUP_FILE="$(hostname)-$USERNAME-home.tar"
+
+cd $HOME
+
+# .config directory
+tar --create --verbose --file=$BACKUP_FILE \
+	--exclude '*[cC][aA][cC][hH][eE]*' \
+	--exclude '*[lL][oO][gG][sS]*' \
+	--exclude '[tT][mM][pP]' \
+	--exclude-tag-under=EXCLUDED \
+	.config
+
+# dot files in home
+find . -maxdepth 1 -name '\.*' -type f -print0 | \
+	cut -z -d'/' -f2- | \
+	xargs -0 tar --append --verbose --file=$BACKUP_FILE
+
+# custom folders in home
+cat .backup-home-include | \
+	xargs tar --append --verbose --file=$BACKUP_FILE --exclude-tag-under=EXCLUDED
+
+# compress
+gzip $BACKUP_FILE
