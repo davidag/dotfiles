@@ -3,4 +3,8 @@
 # from https://unixsheikh.com/tutorials/how-to-do-encrypted-incremental-backups-and-snapshots-with-gnu-tar-and-gnupg.html
 # but without incremental backups
 
-tar --use-compress-program=/home/david/bin/tarcryptor -cvf ~/Dropbox/backups/notes-$(date +%Y%m%d).tar.gz.gpg ~/notes
+[ -z "$1" ] && { echo "use: $(basename $0) dest-dir"; exit 1; }
+
+tar --create --verbose --dereference \
+	--use-compress-program=~/bin/tarcryptor \
+	--file=$1/notes-$(date +%Y%m%d).tar.gz.gpg ~/notes
