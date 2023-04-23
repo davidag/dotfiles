@@ -25,6 +25,7 @@ optdirs="$(echo ~/opt/*)"
 export PATH="${optdirs// /:}:$PATH"
 
 export EDITOR=vim
+export TERMINAL=xterm
 export PATH=~/bin:~/.local/bin/:$PATH
 export LANG=en_US.UTF-8
 
