@@ -16,12 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# add all /opt directories to path
-optdirs="$(echo /opt/*)"
-export PATH="${optdirs// /:}:$PATH"
+# add all ~/opt subdirectories to path
+optdirs="$(find ~/opt -maxdepth 1 -type d)"
+export PATH="${optdirs//$'\n'/:}:$PATH"
 
-# add all ~/opt directories to path
-optdirs="$(echo ~/opt/*)"
+# add all ~/opt/**/bin directories to path
+optdirs="$(echo ~/opt/**/bin)"
 export PATH="${optdirs// /:}:$PATH"
 
 export EDITOR=vim
