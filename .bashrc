@@ -97,13 +97,15 @@ pkg-search() {
 	apt-file search "$1"
 }
 
-# Python
+# python
 activate() {
 	deactivate 2> /dev/null
 	[ -d "venv" ] && source venv/bin/activate && echo "Activated $VIRTUAL_ENV"
 	[ -d ".venv" ] && source .venv/bin/activate && echo "Activated $VIRTUAL_ENV"
 	[ -z "$VIRTUAL_ENV" ] && echo "Error: No venv or .venv directory in current path"
 }
+
+# python pip upgrade packages
 pip-upgrade() {
 	pip list --outdated --format=freeze \
 		| grep -v '^\-e' \
@@ -111,12 +113,14 @@ pip-upgrade() {
 		| xargs -n1 pip install -U
 }
 
-# misc
+# unzip file to folder of same name
 unzd() {
 	if [[ $# != 1 ]]; then echo Single argument required; return 1; fi
 	target="${1%.zip}"
 	unzip "$1" -d "${target##*/}"
 }
+
+# bigger $2 files/folders in directory $1
 topf() {
 	local dir="${1:-.}"
 	local num="${2:-10}"
