@@ -67,3 +67,10 @@ set conceallevel=2
 " fuzzy file finder
 nnoremap <C-P> :Files<CR>
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+" nvim-specific
+if has('nvim')
+	" use clipboard always, using tmux automatically
+	" https://neovim.io/doc/user/provider.html#provider-clipboard
+	set clipboard+=unnamedplus
+endif
