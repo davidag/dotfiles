@@ -147,6 +147,9 @@ export PYTHONDONTWRITEBYTECODE=1
 # Disable pyenv prompt
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
+# Enable z completion
+[ -f ~/opt/z.sh ] && source ~/opt/z.sh
+
 # local config
 if [ -f ~/.bash_local ]; then
     source ~/.bash_local
