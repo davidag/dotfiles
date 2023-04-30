@@ -43,3 +43,6 @@ if [ -a "$HOME/.pyenv/bin/pyenv" ]; then
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
 fi
+
+# ssh agent
+export SSH_AUTH_SOCK="/run/user/$UID/ssh-agent.socket"
