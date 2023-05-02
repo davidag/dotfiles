@@ -1,13 +1,18 @@
 " use vim-plug as plugin manager (for simplicity migrating from vim to neovim)
 call plug#begin()
+
 " basic
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }	" fzf itself
+Plug 'junegunn/fzf.vim' " fuzzy search integration
+
 " syntax / theming / ui
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
 call plug#end()
 
 " force 256 colors even if terminal advertises other number (eg. tmux)
