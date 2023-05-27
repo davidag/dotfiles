@@ -1,0 +1,15 @@
+#!/bin/sh
+
+[ -z "$1" ] && { echo "use: $(basename $0) <src-dir> [dst-dir]"; exit 1; }
+[ ! -d "$1" ] && { echo "dir must be a directory, aborting."; exit 1; }
+[ -n "$2" -a -f "$2" ] && { echo "file $2 already exists, aborting."; exit 1; }
+
+src_dir=$1
+src_dirname=$(basename $src_dir)
+dst_dir=${2:-$(realpath .)}
+
+cd $src_dir
+
+tar --create --verbose --dereference \
+  --use-compress-program=~/bin/tarcryptor \
+  --file=$dst_dir/$src_dirname-$(date +%Y%m%d)-$(date +%H%M).tgz.gpg .

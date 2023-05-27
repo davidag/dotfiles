@@ -1,2 +1,6 @@
 #!/bin/sh
+
+# from https://unixsheikh.com/tutorials/how-to-do-encrypted-incremental-backups-and-snapshots-with-gnu-tar-and-gnupg.html
+# but without incremental backups
+
 gzip -9 | gpg -c --cipher-algo AES256 --compress-algo none --yes -o - --trust-model=always -c

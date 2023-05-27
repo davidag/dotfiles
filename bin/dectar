@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# this script restores a backup file encrypted with enctar
+
+main() {
+  [ "$#" -lt 1 ] && { echo "$(basename $0) <file.gpg> [<dest>]"; exit 1; }
+  [ ! -f "$1" ] && { echo 'invalid file!'; exit 1; }
+  [ -n "$2" -a -f "$2" ] && { echo 'destination is an already existing file!'; exit 1; }
+
+  enc_file=$1
+  dec_file=$(basename ${enc_file/%.gpg/})
+
+  dst_folder=$(basename $enc_file)
+  dst_folder=${dst_folder%%.*}
+  dst_folder=${2:-$dst_folder}
+
+  trap clean EXIT INT
+
+  gpg --output $dec_file --decrypt $enc_file \
+    || { echo "error decrypting $enc_file, aborting."; exit 2; }
+
+  mkdir $dst_folder \
+    || { echo "error creating $dst_folder, aborting."; exit 2; }
+
+  tar --extract --auto-compress --file=$dec_file --directory $dst_folder
+}
+
+
+clean() {
+  if [ ! -z "$dec_file" -a -f "$dec_file" ]; then
+    rm $dec_file
+  fi
+  return 0
+}
+
+main "$@"
