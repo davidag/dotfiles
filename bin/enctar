@@ -1,15 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
-[ -z "$1" ] && { echo "use: $(basename $0) <src-dir> [dst-dir]"; exit 1; }
+[ -z "$1" ] && { echo "use: $(basename $0) <src-dir> [dst-file]"; exit 1; }
 [ ! -d "$1" ] && { echo "dir must be a directory, aborting."; exit 1; }
 [ -n "$2" -a -f "$2" ] && { echo "file $2 already exists, aborting."; exit 1; }
 
 src_dir=$1
 src_dirname=$(basename $src_dir)
-dst_dir=${2:-$(realpath .)}
+
+# use second argument if exist or else craft dest filename in current dir
+dst_file=${2:-./${src_dirname}.tgz.gpg}
+dst_file=$(realpath $dst_file)
+
+# make sure .gpg is suffix
+dst_file=${dst_file/%.gpg}
+dst_file="${dst_file}.gpg"
 
 cd $src_dir
 
-tar --create --verbose --dereference \
+tar --create --dereference \
   --use-compress-program=~/bin/tarcryptor \
-  --file=$dst_dir/$src_dirname-$(date +%Y%m%d)-$(date +%H%M).tgz.gpg .
+  --file=$dst_file .
