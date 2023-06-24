@@ -18,23 +18,24 @@ fi
 
 # add all ~/opt subdirectories to path
 optdirs="$(find ~/opt -maxdepth 1 -type d)"
-export PATH="${optdirs//$'\n'/:}:$PATH"
+export PATH="$PATH:${optdirs//$'\n'/:}"
 
 # add all ~/opt/**/bin directories to path
 optdirs="$(echo ~/opt/**/bin)"
-export PATH="${optdirs// /:}:$PATH"
+export PATH="$PATH:${optdirs// /:}"
 
 export EDITOR=nvim
 export TERMINAL=xterm
-export PATH=~/bin:~/local/bin:~/scripts:~/.local/bin/:$PATH
+export PATH="$PATH:~/bin:~/local/bin:~/scripts:~/.local/bin/"
 export LANG=en_US.UTF-8
 
 # let apps choose their backend
 # export GDK_BACKEND=wayland
 # export GDK_BACKEND=x11
 
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/.poetry/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:/usr/local/go/bin"
 
 # setup pyenv if installed
 if [ -a "$HOME/.pyenv/bin/pyenv" ]; then
