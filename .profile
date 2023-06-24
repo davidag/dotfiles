@@ -26,7 +26,7 @@ export PATH="$PATH:${optdirs// /:}"
 
 export EDITOR=nvim
 export TERMINAL=xterm
-export PATH="$PATH:~/bin:~/local/bin:~/scripts:~/.local/bin/"
+export PATH="$PATH:$HOME/bin:$HOME/local/bin:$HOME/scripts:$HOME/.local/bin/"
 export LANG=en_US.UTF-8
 
 # let apps choose their backend
