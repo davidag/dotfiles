@@ -37,6 +37,11 @@ export PATH="$PATH:$HOME/.poetry/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/usr/local/go/bin"
 
+# add go env bin path
+if [ -n "$(which go)" ]; then
+	export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+
 # setup pyenv if installed
 if [ -a "$HOME/.pyenv/bin/pyenv" ]; then
 	export PYENV_ROOT="$HOME/.pyenv"
