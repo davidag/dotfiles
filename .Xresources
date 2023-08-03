@@ -3,9 +3,9 @@ Xcursor.size: 32
 
 ! xterm customizations from
 ! http://unixsheikh.com/articles/the-terminal-the-console-and-the-shell-what-are-they.html
-XTerm*faceName: "DejaVu Sans Mono"
-XTerm*faceSize: 10
 XTerm*renderFont: true
+XTerm*faceName: xft:SauceCodePro Nerd Font
+XTerm*faceSize: 9
 ! Dynamically change font size with CTRL+SHIFT+PageUp/PageDown
 XTerm*faceSize1: 12
 XTerm*faceSize2: 14
