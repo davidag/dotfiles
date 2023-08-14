@@ -23,18 +23,20 @@
     untracked = cyan
 [alias]
     co = checkout
+    clone-all = clone --recurse-submodules
+    pull-all = pull --recurse-submodules
     ci = commit
     st = status
-	br = for-each-ref --sort=-committerdate refs/heads/ refs/remotes/origin/ --format='%(HEAD) %(color:red)%(objectname:short)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) - %(color:green)%(committerdate:relative)%(color:reset)'
-	l = log --color --abbrev-commit --format=oneline HEAD
-	ll = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit
+    br = for-each-ref --sort=-committerdate refs/heads/ refs/remotes/origin/ --format='%(HEAD) %(color:red)%(objectname:short)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) - %(color:green)%(committerdate:relative)%(color:reset)'
+    l = log --color --abbrev-commit --format=oneline HEAD
+    ll = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit
     hist = log --follow --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
     mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
     pr = !sh -c 'git fetch $1 pull/$2/head:pr-$1-$2 && git checkout pr-$1-$2' -
-	relnotes = log --pretty='%h %ad %an: %s' --date=short --no-merges
-	dft = difftool
+    relnotes = log --pretty='%h %ad %an: %s' --date=short --no-merges
+    dft = difftool
 [push]
     default = simple
 [credential]
@@ -42,12 +44,12 @@
 [include]
     path = .gitconfig_local
 [diff]
-	tool = difftastic
+    tool = difftastic
 [difftool]
-	prompt = false
+    prompt = false
 [difftool "difftastic"]
-	cmd = difft "$LOCAL" "$REMOTE"
+    cmd = difft "$LOCAL" "$REMOTE"
 [pager]
-	difftool = true
+    difftool = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
