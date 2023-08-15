@@ -10,5 +10,4 @@ Usage:
     cd ~
     git init
     git remote add origin git@github.com:davidag/dotfiles.git
-    git fetch
-    git checkout -f master
+    git pull --force --recurse-submodules
