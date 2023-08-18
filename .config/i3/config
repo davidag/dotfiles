@@ -129,6 +129,9 @@ bindsym $mod+Shift+s exec --no-startup-id ~/bin/switch-language
 # disable title bars
 for_window [class="^.*"] border pixel 2
 
+# make file system dialogs fit in the screen
+for_window [window_role="GtkFileChooserDialog"] floating enable move position center, resize set 1024 px 800 px
+
 ## Window resizing mode ##
 
 # resize window (you can also use the mouse for that)
