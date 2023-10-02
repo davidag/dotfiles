@@ -5,14 +5,14 @@ Xcursor.size: 32
 ! http://unixsheikh.com/articles/the-terminal-the-console-and-the-shell-what-are-they.html
 XTerm*renderFont: true
 XTerm*faceName: xft:SauceCodePro Nerd Font
-XTerm*faceSize: 9
+XTerm*faceSize: 11
 ! Dynamically change font size with CTRL+SHIFT+PageUp/PageDown
-XTerm*faceSize1: 12
-XTerm*faceSize2: 14
-XTerm*faceSize3: 16
-XTerm*faceSize4: 18
-XTerm*faceSize5: 20
-XTerm*faceSize6: 22
+XTerm*faceSize1: 9
+XTerm*faceSize2: 10
+XTerm*faceSize3: 12
+XTerm*faceSize4: 14
+XTerm*faceSize5: 16
+XTerm*faceSize6: 18
 XTerm*utf8: 1
 XTerm*termName: xterm-256color
 XTerm*borderWidth: 0
