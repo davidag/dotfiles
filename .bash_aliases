@@ -33,6 +33,7 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias dc='docker compose'
+alias c="ncal -bwM `date +%Y`"
 
 # Filesystem
 alias ..='cd ..'
