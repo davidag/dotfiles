@@ -22,6 +22,9 @@ mouse_warping none
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# policykit
+exec --no-startup-id lxpolkit
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
