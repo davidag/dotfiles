@@ -43,3 +43,6 @@ alias ls='ls --color=auto'
 alias l='ls -lah --color=auto'
 alias la='ls -AF --color=auto'
 alias ll='ls -lFh --color=auto'
+
+# Minikube
+alias kubectl="minikube kubectl --"
