@@ -10,4 +10,6 @@ Usage:
     cd ~
     git init
     git remote add origin git@github.com:davidag/dotfiles.git
-    git pull --force --recurse-submodules
+    git fetch origin
+    git reset --hard origin/main
+    git branch --set-upstream-to=origin/main main
