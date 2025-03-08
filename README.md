@@ -1,15 +1,7 @@
 My dotfiles
 ===========
 
-These are the dotfiles I currently use. I work on Debian Linux, mainly doing Python programming. I'm working towards a keyboard-centric workflow, though there's much room for improvement.
+These are the dotfiles I currently use.
 
-I've gone through several dotfiles management alternatives and I'm finally going all in with making my $HOME folder a git repository. I expect this setup to be both less error-prone and more clear.
+They can be installed with the `manage-dotfiles.py` script, created by @arp242.
 
-Usage:
-
-    cd ~
-    git init
-    git remote add origin git@github.com:davidag/dotfiles.git
-    git fetch origin
-    git reset --hard origin/main
-    git branch --set-upstream-to=origin/main main
