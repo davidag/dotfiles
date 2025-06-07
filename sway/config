@@ -1,10 +1,12 @@
-# Read `man 5 sway` for a complete reference.
-
 ### Variables
 # Logo key
 set $mod Mod4
-# Prefer to use update-alternatives to set alacritty
-set $term x-terminal-emulator
+
+# Set Ghostty as default terminal
+set $term ghostty
+
+# Set Firefox as default browser
+set $browser firefox
 
 # Home row direction keys, like vim
 set $left h
@@ -12,10 +14,10 @@ set $down j
 set $up k
 set $right l
 
-# Your preferred application launcher
+# Application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu -p "Run" -l 10 | xargs swaymsg exec --
+set $menu wofi --term=ghostty --show=drun --insensitive --allow-images --width=380 --lines=12 --no-actions --hide-scroll --prompt="Applications" --cache-file=/dev/null
 
 ### Output configuration
 #
@@ -32,8 +34,12 @@ exec swayidle -w \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec_always nm-applet --indicator
+
 ### Input configuration
-#
+
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -45,6 +51,11 @@ exec swayidle -w \
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
+# Make caps lock work as control
+input type:keyboard {
+    xkb_options caps:ctrl_modifier
+}
 
 ### Key bindings
 #
@@ -185,22 +196,35 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #
-# Status Bar:
+# Special keys
 #
+
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+#
+# Status Bar
+#
+
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command /bin/waybar
 }
+
+#
+# Theme
+#
+
+# Set swaywm font
+font pango: Noto Sans Mono 10
+
+# Hide cursor while typing
+seat seat0 hide_cursor when-typing disable
+
+#
+# Extra configs
+#
 
 include /etc/sway/config.d/*
 include ~/.config/sway/`hostname`

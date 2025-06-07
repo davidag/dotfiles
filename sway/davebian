@@ -9,7 +9,3 @@ set $laptop LVDS-1
 bindswitch --reload lid:on output $laptop disable
 bindswitch --reload lid:off output $laptop enable
 
-# Make caps lock work as escape
-input type:keyboard {
-    xkb_options caps:escape
-}
