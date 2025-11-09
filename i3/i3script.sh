@@ -1,6 +1,6 @@
 #!/bin/bash
 
-i3status --config ~/.config/i3/i3status.conf | while read line
+i3status | while read line
 do
 	LG=$(setxkbmap -query | awk '/layout/ {print toupper($2)}')
 	LGDATA=$(cat <<-END
