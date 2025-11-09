@@ -10,7 +10,7 @@ root = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 # TODO: These should all be commandline arguments
 verbose = True
-difftool = ['vimdiff', '-c source {}/diffexpr.vim'.format(root)]
+difftool = ['diff']
 clobber_it_all = False
 
 
@@ -151,16 +151,6 @@ def manage_files(files):
             print("Skipping merge of `{}' because it is larger than 1MiB".format(src))
             continue
 
-        # TODO: temporarily until I implement font-scale
-        # Check again if the files differ, but this time ignoring lines with
-        # $dotignore$; this test is comparatively slow, which is why we do it
-        # here
-        #dest_data = [ l for l in open(dest, 'r').readlines() if not 'dot-ignore' in l]
-        #src_data = [ l for l in open(src, 'r').readlines() if not 'dot-ignore' in l ]
-        #if src_data == dest_data:
-        #    continue
-        # End temp code
-
         h1 = hashlib.sha256(open(src, 'rb').read()).hexdigest()
         h2 = hashlib.sha256(open(dest, 'rb').read()).hexdigest()
 
@@ -168,7 +158,14 @@ def manage_files(files):
         if h1 == h2:
             continue
 
+        # Show diff and ask what to do
         run_diff(src, dest)
+
+        action = ask('What shall we do', ['ignore', 'overwrite'])
+        if action == 'ignore':
+            continue
+        if action == 'overwrite':
+            install_file(src, dest)
 
 
 def run_diff(src, dest):
