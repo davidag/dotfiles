@@ -1,4 +1,14 @@
-output eDP-1 {
-    mode 2560x1440@59.998Hz
-    scale 2
-}
+set $laptop eDP-1
+set $monitor HDMI-A-1
+
+# Laptop screen
+output $laptop scale 2
+output $laptop pos 0 0 res 2560x1440
+
+# Monitor
+output $monitor pos 1280 0 res 1920x1080
+
+# Clamshell mode
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+exec_always ~/.config/sway/clamshell.sh
