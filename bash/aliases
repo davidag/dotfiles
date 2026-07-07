@@ -29,9 +29,8 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # Shortcuts
 alias g="grep"
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
+alias v="vim"
+alias vi="vim"
 alias dc='docker compose'
 alias c="ncal -bwM `date +%Y`"
 
