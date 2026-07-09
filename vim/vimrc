@@ -5,7 +5,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }	" fzf itself
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fzf itself
 Plug 'junegunn/fzf.vim' " fuzzy search integration
 
 " syntax / theming / ui
@@ -26,8 +26,11 @@ syntax enable
 colorscheme gruvbox
 
 " indendation and tabs
-set tabstop=4       " default number of spaces that a <Tab> in the file counts for
-set shiftwidth=4    " default number of spaces to use for each indent
+set softtabstop=4   " number of spaces inserted/removed when pressing Tab or Backspace
+set tabstop=4       " number of spaces that a <Tab> in the file counts for
+set shiftwidth=4    " number of spaces to use for each indent, auto-indent
+set expandtab       " insert spaces instead of literal tab characters
+set smarttab        " use shiftwidth when indenting in front of a line
 
 " au FileType py set cinwords=if,elif,else,for,while,try,except,finally,def,class " add python-specific keywords
 autocmd FileType python setlocal et ts=4 sw=4
