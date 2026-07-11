@@ -6,7 +6,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
