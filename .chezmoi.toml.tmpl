@@ -1,0 +1,10 @@
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[edit]
+hardlink = false
+
+[merge]
+command = "vimdiff"
+
+[data]
+enableLegacyX11 = false

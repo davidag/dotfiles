@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if (( $# != 1 )); then
+    printf 'Usage: rclone-lsl-sorted remote:path\n' >&2
+    exit 1
+fi
+
+rclone lsl "$1" |
+while IFS= read -r line; do
+    read -r _ _ _ filename <<< "$line"
+    [[ $filename == .git/* ]] || printf '%s\n' "$line"
+done |
+LC_ALL=C sort -k2,3r

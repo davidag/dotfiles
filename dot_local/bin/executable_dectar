@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if (( $# < 1 || $# > 2 )); then
+    printf 'Usage: %s FILE.gpg [DEST_DIR]\n' "$(basename -- "$0")" >&2
+    exit 1
+fi
+if [[ ! -f $1 ]]; then
+    printf 'Error: %s is not a file\n' "$1" >&2
+    exit 1
+fi
+
+enc_file=$(realpath -- "$1")
+archive_name=$(basename -- "$enc_file")
+dst_folder=${2:-${archive_name%%.*}}
+
+if [[ -e $dst_folder ]]; then
+    printf 'Error: %s already exists\n' "$dst_folder" >&2
+    exit 1
+fi
+
+mkdir -- "$dst_folder"
+if ! gpg --decrypt -- "$enc_file" | tar --extract --gzip --file=- --directory="$dst_folder"; then
+    printf 'Error: could not restore %s\n' "$enc_file" >&2
+    exit 2
+fi

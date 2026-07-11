@@ -1,0 +1,38 @@
+let mapleader = ' '
+
+" Use the vendored vim-plug as plugin manager.
+call plug#begin()
+
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+
+call plug#end()
+
+if exists('+termguicolors')
+    set termguicolors
+endif
+if filereadable(expand('~/.config/omarchy/current/theme/colors.toml'))
+    colorscheme omarchy
+else
+    silent! colorscheme gruvbox
+endif
+
+" Defaults for files where Sleuth cannot infer an indentation style.
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+
+set ignorecase
+set smartcase
+set infercase
+
+if has('clipboard')
+    set clipboard+=unnamedplus
+endif

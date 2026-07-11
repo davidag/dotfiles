@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if (( $# < 1 || $# > 2 )); then
+    printf 'Usage: %s SRC_DIR [DST_FILE]\n' "$(basename -- "$0")" >&2
+    exit 1
+fi
+if [[ ! -d $1 ]]; then
+    printf 'Error: %s is not a directory\n' "$1" >&2
+    exit 1
+fi
+
+src_dir=$(realpath -- "$1")
+src_dirname=$(basename -- "$src_dir")
+dst_file=$(realpath -- "${2:-./${src_dirname}.tgz.gpg}")
+dst_file=${dst_file%.gpg}.gpg
+
+if [[ -e $dst_file ]]; then
+    printf 'Error: %s already exists\n' "$dst_file" >&2
+    exit 1
+fi
+
+tar --create --dereference \
+    --use-compress-program="$HOME/.local/bin/tarcryptor" \
+    --file="$dst_file" \
+    --directory="$src_dir" .

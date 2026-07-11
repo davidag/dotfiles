@@ -1,0 +1,30 @@
+README.md
+
+{{ if or (ne .chezmoi.os "linux") (not .enableLegacyX11) }}
+.Xresources
+.xinitrc
+.xsessionrc
+.config/i3/**
+.config/i3status/**
+.config/sway/**
+.config/waybar/**
+.local/bin/switch-language
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.local/bin/dectar
+.local/bin/difftar-folder
+.local/bin/enctar
+.local/bin/ff
+.local/bin/ffp
+.local/bin/lsdate
+.local/bin/rclone-lsl-sorted
+.local/bin/set-commit-date
+{{ end }}
+
+{{ if and .enableLegacyX11 (ne .chezmoi.hostname "davebian") }}
+.config/sway/davebian
+{{ end }}
+{{ if and .enableLegacyX11 (ne .chezmoi.hostname "songoku") }}
+.config/sway/songoku
+{{ end }}
