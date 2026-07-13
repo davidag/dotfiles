@@ -1,3 +1,7 @@
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
 # Git (compatible with Oh My Zsh)
 alias g='git'
 alias ga='git add'
