@@ -4,13 +4,17 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Install
 
-Initialize a new machine from GitHub:
+Install Homebrew and chezmoi, then initialize a new machine from GitHub:
 
 ```sh
+brew install chezmoi
 chezmoi init --ssh davidag/dotfiles
 chezmoi diff
 chezmoi apply
 ```
+
+On macOS, `chezmoi apply` installs packages missing from `Brewfile`. Existing
+packages are not upgraded automatically.
 
 When using an existing checkout as the source directory:
 
@@ -31,6 +35,26 @@ chezmoi update               # Pull and apply remote changes
 ```
 
 Commit and push changes from the source repository with Git as usual.
+
+## Homebrew packages
+
+Edit `Brewfile` in the source repository when adding or removing a managed
+package. The next `chezmoi apply` runs Homebrew Bundle when the file changes.
+
+Check whether managed packages are installed:
+
+```sh
+brew bundle check --no-upgrade --file "$(chezmoi source-path)/Brewfile" --verbose
+```
+
+Review available upgrades and packages that are installed but unmanaged:
+
+```sh
+brew outdated --greedy
+brew bundle cleanup --file "$(chezmoi source-path)/Brewfile"
+```
+
+`brew bundle cleanup` only previews removals unless `--force` is added.
 
 ## Platform behavior
 

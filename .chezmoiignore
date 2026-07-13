@@ -1,4 +1,5 @@
 README.md
+Brewfile
 
 {{ if or (ne .chezmoi.os "linux") (not .enableLegacyX11) }}
 .Xresources
