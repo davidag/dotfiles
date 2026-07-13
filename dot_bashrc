@@ -6,6 +6,10 @@ if [[ $(uname -s) == Linux && -r "$HOME/.local/share/omarchy/default/bash/rc" ]]
     source "$HOME/.local/share/omarchy/default/bash/rc"
 fi
 
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+    source "/opt/homebrew/etc/profile.d/bash_completion.sh"
+fi
+
 if [[ -f "$HOME/.bash_aliases" ]]; then
     source "$HOME/.bash_aliases"
 fi
