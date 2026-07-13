@@ -1,0 +1,19 @@
+# -*- mode: conf -*-
+theme = Catppuccin Mocha
+font-family = "JetBrains Mono"
+font-size = 16
+font-thicken = true
+
+# Background configuration
+background-opacity = 0.95
+background-blur-radius = 20
+
+{{ if eq .chezmoi.os "darwin" -}}
+command = /opt/homebrew/bin/bash
+{{ else -}}
+command = /usr/bin/bash
+{{ end -}}
+shell-integration = bash
+cursor-style = bar
+cursor-style-blink = true
+shell-integration-features = no-cursor
