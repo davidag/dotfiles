@@ -28,7 +28,7 @@ brew "tldr"
 brew "tmux"
 brew "tree"
 brew "uv"
-brew "vim"
+brew "vim-classic"
 brew "watch"
 brew "anomalyco/tap/opencode", trusted: true
 brew "zoxide"
