@@ -36,3 +36,11 @@ set infercase
 if has('clipboard')
     set clipboard+=unnamedplus
 endif
+
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    nnoremap \ :Rg<Space>
+endif
+
+nnoremap <C-p> :Files<CR>
