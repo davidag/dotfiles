@@ -8,7 +8,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
+Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
@@ -19,7 +19,7 @@ endif
 if filereadable(expand('~/.config/omarchy/current/theme/colors.toml'))
     colorscheme omarchy
 else
-    silent! colorscheme gruvbox
+    silent! colorscheme catppuccin_mocha
 endif
 
 " Defaults for files where Sleuth cannot infer an indentation style.

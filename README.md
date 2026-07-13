@@ -66,7 +66,7 @@ brew bundle cleanup --file "$(chezmoi source-path)/Brewfile"
 - When the legacy desktop is enabled, host-specific Sway files are selected
   using the hostname.
 - Vim reads Omarchy's active color palette when available and falls back to
-  Gruvbox elsewhere.
+  Catppuccin Mocha elsewhere.
 - Machine-local Git identity overrides can be placed in
   `~/.config/git/config.local`; that file is not managed.
 - Mutt credentials in `~/.config/mutt/secret` are not managed.
