@@ -30,6 +30,9 @@ export -n PROMPT_COMMAND
 # Disable Ctrl-S/Ctrl-Q terminal flow control.
 stty -ixon 2>/dev/null
 
+if [[ -d /opt/homebrew/bin ]]; then
+    PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+fi
 export PATH="${OMARCHY_PATH:+$OMARCHY_PATH/bin:}$HOME/.local/bin:$HOME/.cargo/bin:$HOME/bin:$HOME/opt:$PATH"
 export PYTHONDONTWRITEBYTECODE=1
 
