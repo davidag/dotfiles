@@ -23,8 +23,9 @@ export HISTIGNORE='?:??: *:&'
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
-# Append to the history file after each command
-export PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+# Append to the history file after each command. Prompt hooks are shell-local.
+PROMPT_COMMAND='history -a'
+export -n PROMPT_COMMAND
 
 # Disable Ctrl-S/Ctrl-Q terminal flow control.
 stty -ixon 2>/dev/null

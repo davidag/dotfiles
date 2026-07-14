@@ -57,6 +57,11 @@ bind -n M-Up switch-client -p
 bind -n M-Down switch-client -n
 
 # General
+{{ if eq .chezmoi.os "darwin" -}}
+set -g default-shell "/opt/homebrew/bin/bash"
+{{ else -}}
+set -g default-shell "/usr/bin/bash"
+{{ end -}}
 set -g default-terminal "tmux-256color"
 set -ag terminal-overrides ",*:RGB"
 set -g mouse on
