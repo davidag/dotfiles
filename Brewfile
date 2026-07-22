@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 
 tap "anomalyco/tap"
+brew "anomalyco/tap/opencode", trusted: true
 
 brew "age"
 brew "bash"
@@ -26,6 +27,7 @@ brew "moreutils"
 brew "node"
 brew "openssh"
 brew "p7zip"
+brew "poppler"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "ripgrep"
@@ -38,7 +40,7 @@ brew "tree"
 brew "uv"
 brew "vim-classic"
 brew "watch"
-brew "anomalyco/tap/opencode", trusted: true
+brew "yazi"
 brew "zoxide"
 brew "zsh"
 

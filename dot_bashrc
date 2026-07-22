@@ -85,6 +85,14 @@ topf() {
     du -ha "$dir" | sort -hr | command head -n "$num"
 }
 
+y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	command rm -f -- "$tmp"
+}
+
 if [[ -r "$HOME/.bash_local" ]]; then
     source "$HOME/.bash_local"
 fi
