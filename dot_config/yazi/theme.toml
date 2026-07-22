@@ -1,0 +1,11 @@
+[tabs]
+active = { fg = "black", bg = "blue" }
+inactive = { fg = "blue", bg = "reset" }
+
+[mode]
+normal_main = { fg = "black", bg = "blue" }
+normal_alt = { fg = "blue", bg = "reset" }
+select_main = { fg = "black", bg = "green" }
+select_alt = { fg = "green", bg = "reset" }
+unset_main = { fg = "black", bg = "red" }
+unset_alt = { fg = "red", bg = "reset" }
