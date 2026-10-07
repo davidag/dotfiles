@@ -10,6 +10,8 @@ background-blur-radius = 20
 
 {{ if eq .chezmoi.os "darwin" -}}
 command = /opt/homebrew/bin/bash
+# Left Option acts as Alt; right Option types accents (⌥n n → ñ)
+macos-option-as-alt = left
 {{ else -}}
 command = /usr/bin/bash
 {{ end -}}
