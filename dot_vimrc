@@ -36,6 +36,8 @@ elseif has('clipboard')
     set clipboard+=unnamed
 endif
 
+set directory=~/.vim/swap//
+
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
