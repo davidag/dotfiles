@@ -14,7 +14,7 @@ bind -T copy-mode-vi y send -X copy-selection-and-cancel
 # Pane controls
 bind h split-window -v -c "#{pane_current_path}"
 bind v split-window -h -c "#{pane_current_path}"
-bind x kill-pane
+bind x confirm-before -p "Kill pane #P? (y/n)" kill-pane
 
 bind -n C-M-Left select-pane -L
 bind -n C-M-Right select-pane -R
@@ -29,7 +29,7 @@ bind -n C-M-S-Right resize-pane -R 5
 # Window navigation
 bind r command-prompt -I "#W" "rename-window -- '%%'"
 bind c new-window -c "#{pane_current_path}"
-bind k kill-window
+bind k confirm-before -p "Kill window #W? (y/n)" kill-window
 
 bind -n M-1 select-window -t 1
 bind -n M-2 select-window -t 2
