@@ -11,6 +11,8 @@ Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 Plug 'vim-airline/vim-airline'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
@@ -20,16 +22,51 @@ else
     silent! colorscheme catppuccin_mocha
 endif
 
-" Defaults for files where Sleuth cannot infer an indentation style.
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
+" LSP Configuration
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_delay = 200
 
+function! s:on_lsp_buffer_enabled() abort
+    setlocal signcolumn=yes
+    setlocal tagfunc=lsp#tagfunc  " Ctrl-] uses LSP
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> K  <plug>(lsp-hover)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nnoremap <buffer> <leader>gt :tab LspDefinition<CR>
+    nnoremap <buffer> <leader>gv :vertical LspDefinition<CR>
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+endfunction
+
+augroup lsp_install
+    autocmd!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" Defaults for files where Sleuth cannot infer an indentation style.
+set expandtab
+set shiftwidth=4
+set softtabstop=-1  " follows shiftwidth
+set list
+
+" Python: indent continuation lines by one level, not two.
+let g:pyindent_open_paren = 'shiftwidth()'
+let g:pyindent_continue = 'shiftwidth()'
+
+" Keep the selection after shifting in visual mode.
+xnoremap > >gv
+xnoremap < <gv
+
+" Case-related search options.
 set ignorecase
 set smartcase
-set infercase
+set tagcase=match  " tag jumps (Ctrl-]) always match case
+
+augroup prose_case
+    autocmd!
+    autocmd FileType markdown,text,gitcommit setlocal infercase
+augroup END
 
 if has('unnamedplus')
     set clipboard+=unnamedplus
