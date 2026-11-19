@@ -13,8 +13,13 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 Plug 'vim-airline/vim-airline'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'romainl/vim-qf'
 
 call plug#end()
+
+" vim-qf: s/v/t/o/O/p in quickfix and location windows.
+" Only existence is checked, so setting it to 0 does not disable it.
+let g:qf_mapping_ack_style = 1
 
 if filereadable(expand('~/.config/omarchy/current/theme/colors.toml'))
     colorscheme omarchy
